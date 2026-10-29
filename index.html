@@ -3,1360 +3,1143 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>EZ SPA COST V2.5 | Azie Balinese Spa</title>
+<title>EZ SPA COST | Azie Balinese Spa</title>
 
 <style>
 :root {
-    --primary: #e87998;
-    --secondary: #fce7ef;
-    --background: #fff8fa;
-    --text: #403641;
-    --card: #ffffff;
-    --border: #f3d4df;
+  --pink:#f43f65;
+  --pink-dark:#9f1239;
+  --green:#059669;
+  --ink:#253044;
+  --muted:#758094;
+  --line:#f3dce2;
+  --bg:#f8f7f7;
+  --white:#fff;
 }
-
-body.sage {
-    --primary: #568875;
-    --secondary: #e0eee7;
-    --background: #f4f8f4;
-    --text: #283c33;
-    --border: #cfe0d5;
-}
-
-body.lavender {
-    --primary: #9575cd;
-    --secondary: #eee5fa;
-    --background: #faf7ff;
-    --text: #3f3453;
-    --border: #e0d4f3;
-}
-
-body.ocean {
-    --primary: #3489ae;
-    --secondary: #e1f2fa;
-    --background: #f4faff;
-    --text: #243c4b;
-    --border: #cde6f3;
-}
-
-body.night {
-    --primary: #d6a6ff;
-    --secondary: #303449;
-    --background: #171b28;
-    --text: #f2edf8;
-    --card: #222738;
-    --border: #41475b;
-}
-
-* {
-    box-sizing: border-box;
-}
-
+* { box-sizing:border-box; }
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: var(--background);
-    color: var(--text);
-    transition: 0.3s;
+  margin:0;
+  font-family:Inter,"Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  background:linear-gradient(135deg,#fff8fa,#f6fbf9);
+  min-height:100vh;
 }
-
-button, input, select {
-    font: inherit;
-}
-
+button,input,select,textarea { font:inherit; }
 button {
-    border: none;
-    padding: 11px 15px;
-    border-radius: 9px;
-    cursor: pointer;
-    font-weight: bold;
+  cursor:pointer;
+  border:0;
+  border-radius:11px;
+  padding:10px 14px;
+  font-weight:700;
+  transition:.15s;
 }
-
-button:hover {
-    opacity: 0.85;
-}
-
-.primary-btn {
-    background: var(--primary);
-    color: white;
-}
-
-.secondary-btn {
-    background: var(--secondary);
-    color: var(--text);
-}
-
-header {
-    background: var(--card);
-    padding: 17px 25px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.logo {
-    font-family: Georgia, serif;
-    color: var(--primary);
-    font-size: 25px;
-    font-weight: bold;
-}
-
-.settings {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.settings select {
-    background: var(--card);
-    color: var(--text);
-    padding: 9px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-}
-
-.login-screen {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background:
-        linear-gradient(#fff5f0c9, #f9e8f0db),
-        url("https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85")
-        center/cover;
-}
-
-.login-box {
-    width: 100%;
-    max-width: 420px;
-    background: white;
-    color: #403641;
-    padding: 35px;
-    border-radius: 22px;
-    box-shadow: 0 15px 45px #51344030;
-    text-align: center;
-}
-
-.login-box .flower {
-    font-size: 48px;
-}
-
-.login-box h1 {
-    color: #bd5979;
-    font-family: Georgia, serif;
-}
-
-.login-box input,
-.login-box select {
-    display: block;
-    width: 100%;
-    margin: 12px 0;
-    padding: 13px;
-    border: 1px solid #ead6df;
-    border-radius: 9px;
-}
-
-.login-box button {
-    width: 100%;
-    margin-top: 10px;
-}
-
-.error {
-    color: #c62828;
-    font-size: 13px;
-}
-
-#app {
-    display: none;
-}
-
-.layout {
-    display: grid;
-    grid-template-columns: 245px minmax(0, 1fr);
-    min-height: calc(100vh - 70px);
-}
-
+button:hover { filter:brightness(.97); transform:translateY(-1px); }
+.app { display:grid; grid-template-columns:290px minmax(0,1fr); min-height:100vh; }
 .sidebar {
-    background: var(--card);
-    border-right: 1px solid var(--border);
-    padding: 15px;
+  background:#fff;
+  border-right:1px solid #f4dce2;
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow:auto;
 }
-
-.sidebar h3 {
-    color: var(--primary);
-    padding: 0 10px;
+.brand {
+  padding:25px 18px 22px;
+  text-align:center;
+  background:linear-gradient(145deg,#fff2f5,#fff);
+  border-bottom:1px solid #ffe0e7;
 }
-
-.nav-button {
-    width: 100%;
-    background: transparent;
-    color: var(--text);
-    text-align: left;
-    margin: 4px 0;
-    padding: 13px;
-    border-radius: 9px;
+.brand-mark {
+  width:66px;
+  height:66px;
+  border-radius:50%;
+  background:#fde1e6;
+  color:var(--pink);
+  display:grid;
+  place-items:center;
+  font-size:31px;
+  margin:0 auto 10px;
 }
-
-.nav-button:hover,
-.nav-button.active {
-    background: var(--secondary);
+.brand h1 {
+  font-family:Georgia,serif;
+  color:var(--pink-dark);
+  font-size:27px;
+  margin:0 0 6px;
 }
-
-main {
-    padding: 25px;
-    min-width: 0;
+.badge {
+  display:inline-block;
+  background:#d1fae5;
+  color:#066b52;
+  border-radius:20px;
+  padding:5px 14px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.5px;
 }
-
+.brand p { margin:8px 0 0; color:var(--muted); font-style:italic; font-size:14px; }
+.nav { padding:12px 10px; }
+.nav button {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  width:100%;
+  background:transparent;
+  color:#3d485b;
+  text-align:left;
+  padding:13px 14px;
+  margin:3px 0;
+  border-radius:10px;
+  font-weight:650;
+}
+.nav button.active,.nav button:hover { background:#fff0f3; color:var(--pink-dark); }
+.nav .ico { width:22px; font-size:19px; text-align:center; }
+.side-note {
+  padding:15px;
+  border-top:1px solid #ffe0e7;
+  background:#fff8fa;
+  font-size:12px;
+  color:var(--muted);
+}
+.main { padding:22px 26px 35px; min-width:0; }
+.toolbar {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#fff;
+  border:1px solid #ffb8c6;
+  border-left:5px solid #ff6580;
+  border-radius:18px;
+  padding:16px 18px;
+  box-shadow:0 5px 12px #1b24330d;
+  margin-bottom:27px;
+}
+.toolbar strong { margin-right:2px; }
+.toolbar select {
+  border:1px solid #ffd1da;
+  border-radius:10px;
+  padding:10px 12px;
+  background:white;
+  color:var(--ink);
+}
+.spacer { flex:1; }
+.btn-green { background:#059669; color:white; }
+.btn-pink { background:#e91e4d; color:white; }
+.btn-soft { background:#ffe6eb; color:#a40e37; }
+.btn-outline { background:white; border:1px solid #f6c6d1; color:#9f1239; }
 .hero {
-    padding: 35px 25px;
-    border-radius: 20px;
-    margin-bottom: 22px;
-    background: linear-gradient(120deg, var(--secondary), var(--card));
-    border: 1px solid var(--border);
+  position:relative;
+  overflow:hidden;
+  border:1px solid white;
+  border-radius:28px;
+  padding:30px 20px 32px;
+  text-align:center;
+  background:linear-gradient(110deg,#fcecf6,#f8f9ff 48%,#d9faeb);
+  box-shadow:0 10px 18px #1b243315;
+  margin-bottom:27px;
 }
-
-.hero h1 {
-    color: var(--primary);
-    font-family: Georgia, serif;
-    font-size: clamp(28px, 4vw, 42px);
-    margin-bottom: 8px;
+.hero:after {
+  content:"✿";
+  position:absolute;
+  right:12px;
+  bottom:-65px;
+  font-size:190px;
+  color:#b4b5a044;
+  transform:rotate(-15deg);
 }
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 15px;
-    margin-bottom: 20px;
+.lotus {
+  position:relative;
+  z-index:1;
+  width:75px;
+  height:75px;
+  border-radius:50%;
+  background:white;
+  box-shadow:0 3px 7px #0002;
+  display:grid;
+  place-items:center;
+  font-size:36px;
+  color:var(--pink);
+  margin:0 auto 8px;
 }
-
+.hero h2 {
+  position:relative;
+  z-index:1;
+  font-family:Georgia,serif;
+  font-size:clamp(32px,4vw,54px);
+  margin:0;
+  color:#222b3b;
+  letter-spacing:-1.5px;
+}
+.tagline {
+  position:relative;
+  z-index:1;
+  color:var(--pink);
+  font-family:Georgia,serif;
+  font-style:italic;
+  font-size:21px;
+  margin:2px 0 13px;
+}
+.hero h3 {
+  position:relative;
+  z-index:1;
+  color:#08684f;
+  font-family:Georgia,serif;
+  font-size:clamp(27px,3vw,42px);
+  letter-spacing:2px;
+  margin:0;
+}
+.hero p { position:relative; z-index:1; margin:0; color:#536073; font-weight:600; }
+.cards { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:17px; }
 .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 20px;
-    border-radius: 15px;
-    overflow-wrap: anywhere;
+  min-height:144px;
+  border:1px solid var(--card-border,#f9c9d3);
+  background:var(--card-bg,#fff0f2);
+  border-radius:19px;
+  padding:17px 12px;
+  text-align:center;
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+  justify-content:center;
+  color:var(--ink);
+  cursor:pointer;
 }
-
-.card h3 {
-    font-size: 14px;
-    color: var(--primary);
+.card:hover { box-shadow:0 8px 18px #1b243315; transform:translateY(-2px); }
+.card .icon {
+  width:57px;
+  height:57px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  color:white;
+  background:var(--accent,#fb7185);
+  font-size:26px;
+  box-shadow:0 3px 5px #0001;
+  margin-bottom:10px;
 }
-
-.card strong {
-    font-size: 23px;
+.card b { font-size:14px; }
+.card small { font-size:12px; color:#788296; margin-top:5px; }
+.card.wide { grid-column:span 2; }
+.page {
+  background:#fff;
+  border:1px solid #f4dce2;
+  border-radius:20px;
+  padding:22px;
+  box-shadow:0 5px 15px #1b243308;
 }
-
-.panel {
-    background: var(--card);
-    padding: 22px;
-    border-radius: 15px;
-    border: 1px solid var(--border);
-    margin-bottom: 20px;
+.page-head {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
 }
-
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 13px;
+.page h2 { margin:0 0 5px; font-size:25px; }
+.muted { color:var(--muted); font-size:13px; }
+.stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-bottom:18px; }
+.stat {
+  border:1px solid #f1dfe5;
+  border-radius:15px;
+  padding:17px;
+  background:linear-gradient(135deg,#fff,#fff8fa);
 }
-
-.form-grid label {
-    display: block;
-    font-size: 13px;
-    margin-bottom: 6px;
-    font-weight: bold;
+.stat span { font-size:12px; color:var(--muted); }
+.stat strong { display:block; font-size:24px; margin-top:7px; }
+.form-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:13px; margin-bottom:18px; }
+.field { display:flex; flex-direction:column; gap:6px; }
+.field label { font-size:12px; font-weight:750; color:#536073; }
+.field input,.field select,.field textarea {
+  width:100%;
+  padding:10px 11px;
+  border:1px solid #e7dfe3;
+  border-radius:9px;
+  background:#fff;
+  color:var(--ink);
+  min-width:0;
 }
-
-.form-grid input,
-.form-grid select {
-    width: 100%;
-    padding: 11px;
-    border: 1px solid var(--border);
-    background: var(--card);
-    color: var(--text);
-    border-radius: 8px;
+.field textarea { min-height:75px; resize:vertical; }
+.actions { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 18px; }
+.table-wrap { overflow:auto; border:1px solid #eee3e7; border-radius:12px; }
+table { width:100%; border-collapse:collapse; min-width:720px; }
+th,td { padding:12px 11px; text-align:left; border-bottom:1px solid #f1e8eb; font-size:13px; }
+th { background:#fff5f7; color:#8c2442; font-size:12px; white-space:nowrap; }
+tr:last-child td { border-bottom:0; }
+td .mini { padding:6px 8px; font-size:11px; background:#ffe7ec; color:#9f1239; }
+.empty { text-align:center; color:#8a94a5; padding:25px; }
+.notice {
+  padding:12px 14px;
+  border-radius:10px;
+  background:#effcf6;
+  color:#087454;
+  border:1px solid #c7f0df;
+  font-size:13px;
+  margin:12px 0;
 }
+.warning { background:#fff8e6; border-color:#f9e2a3; color:#8a5b00; }
+.chart-bars { display:flex; align-items:end; gap:12px; height:180px; padding:18px 8px 0; border-bottom:1px solid #e9e1e4; }
+.bar-col { flex:1; min-width:20px; text-align:center; height:100%; display:flex; flex-direction:column; justify-content:end; align-items:center; gap:6px; }
+.bar { width:min(42px,70%); min-height:3px; background:linear-gradient(#34d399,#059669); border-radius:7px 7px 0 0; }
+.bar-col small { font-size:10px; color:var(--muted); }
+.bar-col em { font-size:10px; font-style:normal; }
+.footer { color:#98a0ad; text-align:center; font-size:11px; margin-top:22px; }
 
-.form-actions {
-    margin-top: 15px;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+@media(max-width:1200px) {
+  .cards { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .app { grid-template-columns:250px minmax(0,1fr); }
+  .main { padding:18px; }
 }
-
-.table-wrap {
-    width: 100%;
-    overflow-x: auto;
-    margin-top: 15px;
+@media(max-width:780px) {
+  .app { display:block; }
+  .sidebar { position:relative; height:auto; }
+  .nav { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .nav button { font-size:12px; padding:10px; }
+  .main { padding:12px; }
+  .toolbar { padding:12px; }
+  .cards { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .card.wide { grid-column:span 2; }
+  .form-grid { grid-template-columns:1fr 1fr; }
+  .hero { padding:25px 10px; }
+  .stats { gap:8px; }
+  .stat { padding:12px; }
+  .stat strong { font-size:19px; }
 }
-
-table {
-    width: 100%;
-    min-width: 600px;
-    border-collapse: collapse;
+@media(max-width:460px) {
+  .form-grid { grid-template-columns:1fr; }
+  .cards { grid-template-columns:1fr 1fr; }
+  .toolbar .spacer { display:none; }
 }
-
-th, td {
-    border-bottom: 1px solid var(--border);
-    padding: 12px;
-    text-align: left;
-    font-size: 13px;
-}
-
-th {
-    background: var(--secondary);
-}
-
-.small-btn {
-    background: #f9dce6;
-    color: #8b3151;
-    padding: 7px 10px;
-}
-
-footer {
-    padding: 20px;
-    text-align: center;
-    font-size: 12px;
-    opacity: 0.7;
-}
-
-@media(max-width: 850px) {
-    .layout {
-        grid-template-columns: 1fr;
-    }
-
-    .sidebar {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .sidebar nav {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    main {
-        padding: 15px;
-    }
-}
-
-@media(max-width: 520px) {
-    .cards,
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    header {
-        padding: 14px;
-    }
-}
-
 @media print {
-    header, .sidebar, .settings, .form-actions, .no-print {
-        display: none !important;
-    }
-
-    .layout {
-        display: block;
-    }
-
-    main {
-        padding: 0;
-    }
-
-    body {
-        background: white;
-        color: black;
-    }
-
-    .panel, .card {
-        border: 1px solid #ddd;
-        break-inside: avoid;
-    }
+  .sidebar,.toolbar,.actions,.no-print { display:none!important; }
+  .app { display:block; }
+  .main { padding:0; }
+  .hero,.page { box-shadow:none; }
+  .page { border:0; }
+  .cards { grid-template-columns:repeat(3,1fr); }
+  body { background:white; }
 }
 </style>
 </head>
 
 <body>
-
-<!-- SKRIN LOG MASUK -->
-<section class="login-screen" id="loginScreen">
-
-    <div class="login-box">
-
-        <div class="flower">🌸</div>
-
-        <h1>AZIE BALINESE SPA</h1>
-
-        <p id="loginSubtitle">
-            EZ SPA COST V2.5<br>
-            Sistem Pengurusan Kos Perkhidmatan
-        </p>
-
-        <form id="loginForm">
-
-            <input
-                id="username"
-                type="text"
-                placeholder="Nama pengguna"
-                required
-            >
-
-            <input
-                id="password"
-                type="password"
-                placeholder="Kata laluan"
-                required
-            >
-
-            <select id="role">
-                <option value="Admin">Pentadbir / Admin</option>
-                <option value="User">Pengguna / User</option>
-            </select>
-
-            <button class="primary-btn" type="submit" id="loginButton">
-                LOG MASUK
-            </button>
-
-            <p class="error" id="loginError"></p>
-
-        </form>
-
-        <p style="font-size:12px;color:#888">
-            Sistem Pengiraan Kos Perkhidmatan
-        </p>
-
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">♧</div>
+      <h1>Azie Balinese Spa</h1>
+      <span class="badge">EZ SPA COST V2.5</span>
+      <p>Sistem Pengurusan &amp; Kos Spa</p>
     </div>
 
-</section>
+    <nav class="nav" id="nav"></nav>
 
+    <div class="side-note">
+      <b>◉ Tetapan Tema &amp; Gambar</b>
+      <p>Versi demo setempat · Data disimpan dalam pelayar ini.</p>
+      <button class="btn-outline" onclick="resetAll()">Padam Semua Data</button>
+    </div>
+  </aside>
 
-<!-- SISTEM UTAMA -->
-<div id="app">
-
-    <header>
-
-        <div class="logo">🌿 EZ SPA COST</div>
-
-        <div class="settings">
-
-            <select id="language" onchange="changeLanguage()">
-                <option value="ms">🇲🇾 Bahasa Malaysia</option>
-                <option value="en">🇬🇧 English</option>
-            </select>
-
-            <select id="theme" onchange="changeTheme()">
-                <option value="pink">🌸 Pink Spa</option>
-                <option value="sage">🌿 Sage Green</option>
-                <option value="lavender">💜 Lavender</option>
-                <option value="ocean">🌊 Ocean Blue</option>
-                <option value="night">🌙 Night Mode</option>
-            </select>
-
-            <button class="secondary-btn" onclick="logout()" data-ms="Log Keluar" data-en="Log Out">
-                Log Keluar
-            </button>
-
-        </div>
-
-    </header>
-
-
-    <div class="layout">
-
-        <aside class="sidebar">
-
-            <h3>AZIE BALINESE SPA</h3>
-
-            <nav id="navigation">
-
-                <button class="nav-button active" onclick="showPage('home',this)">
-                    🏠 <span data-ms="Menu Utama" data-en="Main Menu">Menu Utama</span>
-                </button>
-
-                <button class="nav-button" onclick="showPage('company',this)">
-                    🏢 <span data-ms="Maklumat Syarikat" data-en="Company Information">Maklumat Syarikat</span>
-                </button>
-
-                <button class="nav-button" onclick="showPage('budget',this)">
-                    📒 <span data-ms="Rekod Belanjawan" data-en="Budget Records">Rekod Belanjawan</span>
-                </button>
-
-                <button class="nav-button" onclick="showPage('cost',this)">
-                    🧾 <span data-ms="Lembaran Kos" data-en="Cost Sheet">Lembaran Kos</span>
-                </button>
-
-                <button class="nav-button" onclick="showPage('variance',this)">
-                    ⚖️ <span data-ms="Analisis Varians" data-en="Variance Analysis">Analisis Varians</span>
-                </button>
-
-                <button class="nav-button" onclick="showPage('services',this)">
-                    💆 <span data-ms="Data Perkhidmatan" data-en="Service Data">Data Perkhidmatan</span>
-                </button>
-
-                <button class="nav-button" onclick="showPage('summary',this)">
-                    📊 <span data-ms="Ringkasan Kos" data-en="Cost Summary">Ringkasan Kos</span>
-                </button>
-
-            </nav>
-
-        </aside>
-
-
-        <main id="content"></main>
-
+  <main class="main">
+    <div class="toolbar no-print">
+      <strong>▦ Tempoh Laporan:</strong>
+      <select id="month" aria-label="Bulan"></select>
+      <select id="year" aria-label="Tahun"></select>
+      <button class="btn-green" onclick="addYear()">＋ Tambah Tahun</button>
+      <button class="btn-soft" onclick="resetMonth()">⟲ Reset Borang Bulan Ini</button>
+      <span class="spacer"></span>
+      <button class="btn-green" onclick="exportExcel()">▣ Export Excel Pastel</button>
+      <button class="btn-pink" onclick="printReport()">▣ Cetak Laporan (Million Style)</button>
     </div>
 
-    <footer>
-        EZ SPA COST V2.5 · AZIE BALINESE SPA · KLUANG, JOHOR
-    </footer>
+    <section id="content"></section>
 
+    <div class="footer">
+      EZ SPA COST V2.5 · Azie Balinese Spa · Simpanan data setempat pada peranti ini
+    </div>
+  </main>
 </div>
 
-
 <script>
-const translations = {
-    ms: {
-        welcome: "Selamat Datang ke EZ SPA COST",
-        subtitle: "Sistem Pengurusan Kos Perkhidmatan Azie Balinese Spa",
-        description: "Urus belanjawan, kos perkhidmatan dan analisis varians dengan lebih sistematik.",
-        budget: "Jumlah Belanjawan",
-        actual: "Jumlah Kos Sebenar",
-        variance: "Baki Belanjawan",
-        records: "Bilangan Rekod",
-        company: "Maklumat Syarikat",
-        companyDescription: "Profil dan maklumat perniagaan spa.",
-        companyName: "Nama Syarikat",
-        address: "Alamat",
-        phone: "Nombor Telefon",
-        email: "Alamat E-mel",
-        save: "Simpan Maklumat",
-        budgetTitle: "Rekod Belanjawan",
-        date: "Tarikh",
-        category: "Kategori",
-        detail: "Butiran",
-        amount: "Amaun (RM)",
-        add: "Tambah Rekod",
-        delete: "Padam",
-        costTitle: "Lembaran Kos",
-        item: "Nama Item",
-        quantity: "Kuantiti",
-        unitCost: "Kos Seunit (RM)",
-        totalCost: "Jumlah Kos (RM)",
-        serviceTitle: "Data Perkhidmatan",
-        service: "Nama Perkhidmatan",
-        price: "Harga Jualan (RM)",
-        standard: "Kos Standard (RM)",
-        duration: "Tempoh (minit)",
-        summary: "Ringkasan Kos",
-        empty: "Belum ada rekod.",
-        report: "Cetak / Simpan PDF",
-        export: "Eksport CSV untuk Excel",
-        saved: "Maklumat berjaya disimpan.",
-        required: "Sila lengkapkan maklumat yang diperlukan."
-    },
+const MONTHS = [
+  'Januari','Februari','Mac','April','Mei','Jun',
+  'Julai','Ogos','September','Oktober','November','Disember'
+];
 
-    en: {
-        welcome: "Welcome to EZ SPA COST",
-        subtitle: "Azie Balinese Spa Cost Management System",
-        description: "Manage budgets, service costs and variance analysis systematically.",
-        budget: "Total Budget",
-        actual: "Total Actual Cost",
-        variance: "Budget Balance",
-        records: "Number of Records",
-        company: "Company Information",
-        companyDescription: "Spa business profile and information.",
-        companyName: "Company Name",
-        address: "Address",
-        phone: "Phone Number",
-        email: "Email Address",
-        save: "Save Information",
-        budgetTitle: "Budget Records",
-        date: "Date",
-        category: "Category",
-        detail: "Details",
-        amount: "Amount (RM)",
-        add: "Add Record",
-        delete: "Delete",
-        costTitle: "Cost Sheet",
-        item: "Item Name",
-        quantity: "Quantity",
-        unitCost: "Unit Cost (RM)",
-        totalCost: "Total Cost (RM)",
-        serviceTitle: "Service Data",
-        service: "Service Name",
-        price: "Selling Price (RM)",
-        standard: "Standard Cost (RM)",
-        duration: "Duration (minutes)",
-        summary: "Cost Summary",
-        empty: "No records yet.",
-        report: "Print / Save PDF",
-        export: "Export CSV for Excel",
-        saved: "Information saved successfully.",
-        required: "Please complete the required information."
-    }
-};
+const MENUS = [
+  ['Menu Utama','⌂','Dashboard dan pautan menu','#fff0f2','#fecdd5','#fb7185'],
+  ['Maklumat Syarikat','▣','Profil & Tetapan Spa','#fff0f2','#fecdd5','#fb7185'],
+  ['Dashboard Kos','⌁','KPI & Graf Kewangan','#e0f8eb','#a7f3d0','#10b981'],
+  ['Rekod Belanjawan','▤','Jadual Perbelanjaan','#fff6d9','#fde68a','#f59e0b'],
+  ['Lembaran Kos','▦','Pecahan Kos Bahan/Buruh','#f5e8fb','#e9d5ff','#a855f7'],
+  ['Analisis Varians','⚖','Standard vs Sebenar','#e0f7f4','#99f6e4','#14b8a6'],
+  ['Data Perkhidmatan','☷','Katalog Rawatan Spa','#e3f5ff','#bae6fd','#0ea5e9'],
+  ['Pekerja & Terapis','♟','Senarai Staf & Kemahiran','#e9edff','#c7d2fe','#6366f1'],
+  ['Cetak & Laporan','▣','Pencetak PDF Million Style','#fff0f2','#fecdd5','#f43f5e'],
+  ['Ringkasan Kos','◔','Rumusan Keseluruhan Bulanan','#f1f9dc','#d9f99d','#65a30d']
+];
 
-const defaultDB = {
-    company: {
-        name: "Azie Balinese Spa",
-        address: "Kluang, Johor",
-        phone: "",
-        email: ""
-    },
-    budgets: [],
-    costs: [],
-    services: []
-};
+const STORE = 'ezSpaCost_v25_data';
 
-let db;
+const defaultData = () => ({
+  company: {
+    name:'Azie Balinese Spa',
+    address:'Kluang, Johor',
+    phone:'',
+    email:'',
+    reg:'',
+    manager:'',
+    notes:''
+  },
+  services:[],
+  staff:[],
+  budgets:{},
+  costs:{},
+  variance:{}
+});
 
-try {
-    db = Object.assign(
-        {},
-        defaultDB,
-        JSON.parse(localStorage.getItem("ezSpaData") || "{}")
-    );
+let db = loadData();
+let active = 0;
 
-    db.company = Object.assign(
-        {},
-        defaultDB.company,
-        db.company || {}
-    );
-
-    db.budgets = Array.isArray(db.budgets) ? db.budgets : [];
-    db.costs = Array.isArray(db.costs) ? db.costs : [];
-    db.services = Array.isArray(db.services) ? db.services : [];
-
-} catch (error) {
-    db = JSON.parse(JSON.stringify(defaultDB));
+function loadData() {
+  try {
+    return Object.assign(defaultData(),JSON.parse(localStorage.getItem(STORE)||'{}'));
+  } catch(e) {
+    return defaultData();
+  }
 }
 
-let lang = localStorage.getItem("ezSpaLanguage") || "ms";
-
-function saveDB() {
-    localStorage.setItem("ezSpaData", JSON.stringify(db));
+function save() {
+  localStorage.setItem(STORE,JSON.stringify(db));
 }
 
-function t(key) {
-    return translations[lang][key] || key;
+function period() {
+  return document.getElementById('year').value + '-' +
+    String(MONTHS.indexOf(document.getElementById('month').value)+1).padStart(2,'0');
 }
 
-function money(value) {
-    return (Number(value) || 0).toLocaleString(
-        lang === "ms" ? "ms-MY" : "en-MY",
-        {
-            style: "currency",
-            currency: "MYR",
-            minimumFractionDigits: 2
-        }
-    );
+function currentLabel() {
+  return document.getElementById('month').value + ' ' +
+    document.getElementById('year').value;
 }
 
-function totalBudget() {
-    return db.budgets.reduce(
-        (sum, row) => sum + Number(row.amount || 0),
-        0
-    );
+function money(n) {
+  return (Number(n)||0).toLocaleString('ms-MY',{
+    style:'currency',
+    currency:'MYR',
+    minimumFractionDigits:2
+  });
 }
 
-function totalCost() {
-    return db.costs.reduce(
-        (sum, row) => sum + Number(row.total || 0),
-        0
-    );
+function num(v) {
+  return Number(v)||0;
 }
 
-function changeTheme() {
-    const theme = document.getElementById("theme").value;
-
-    document.body.className = theme === "pink" ? "" : theme;
-
-    localStorage.setItem("ezSpaTheme", theme);
+function esc(s) {
+  return String(s??'').replace(/[&<>"']/g,c=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[c]));
 }
 
-function changeLanguage() {
-    lang = document.getElementById("language").value;
+function init() {
+  const m = document.getElementById('month');
+  const y = document.getElementById('year');
 
-    localStorage.setItem("ezSpaLanguage", lang);
+  m.innerHTML = MONTHS.map(x=>`<option>${x}</option>`).join('');
+  m.value = MONTHS[new Date().getMonth()];
 
-    document.querySelectorAll("[data-ms]").forEach(element => {
-        element.textContent = element.getAttribute(
-            "data-" + lang
-        );
-    });
+  const yr = new Date().getFullYear();
+  y.innerHTML = Array.from({length:9},(_,i)=>yr-4+i)
+    .map(x=>`<option>${x}</option>`).join('');
+  y.value = yr;
 
-    document.getElementById("username").placeholder =
-        lang === "ms" ? "Nama pengguna" : "Username";
+  m.onchange = render;
+  y.onchange = render;
 
-    document.getElementById("password").placeholder =
-        lang === "ms" ? "Kata laluan" : "Password";
+  document.getElementById('nav').innerHTML = MENUS.map((x,i)=>`
+    <button id="nav${i}" onclick="go(${i})">
+      <span class="ico" style="color:${x[5]}">${x[1]}</span>
+      <span>${i+1}. ${x[0]}</span>
+    </button>
+  `).join('');
 
-    document.getElementById("loginButton").textContent =
-        lang === "ms" ? "LOG MASUK" : "LOG IN";
-
-    document.getElementById("loginSubtitle").innerHTML =
-        lang === "ms"
-            ? "EZ SPA COST V2.5<br>Sistem Pengurusan Kos Perkhidmatan"
-            : "EZ SPA COST V2.5<br>Service Cost Management System";
-
-    renderCurrentPage();
+  render();
 }
 
-function login(event) {
-    event.preventDefault();
-
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value;
-    const role = document.getElementById("role").value;
-
-    const valid =
-        (username === "admin" &&
-         password === "spa123" &&
-         role === "Admin") ||
-
-        (username === "user" &&
-         password === "user123" &&
-         role === "User");
-
-    if (!valid) {
-        document.getElementById("loginError").textContent =
-            lang === "ms"
-                ? "Nama pengguna atau kata laluan tidak tepat."
-                : "Incorrect username or password.";
-
-        return;
-    }
-
-    sessionStorage.setItem("ezSpaLoggedIn", "true");
-
-    document.getElementById("loginScreen").style.display = "none";
-    document.getElementById("app").style.display = "block";
-
-    renderCurrentPage();
+function go(i) {
+  active = i;
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function logout() {
-    sessionStorage.removeItem("ezSpaLoggedIn");
+function render() {
+  document.querySelectorAll('.nav button').forEach((b,i)=>
+    b.classList.toggle('active',i===active)
+  );
 
-    document.getElementById("app").style.display = "none";
-    document.getElementById("loginScreen").style.display = "flex";
+  const c = document.getElementById('content');
 
-    document.getElementById("password").value = "";
+  c.innerHTML =
+    active===0 ? home() :
+    active===1 ? companyPage() :
+    active===2 ? dashboard() :
+    active===3 ? budgetPage() :
+    active===4 ? costPage() :
+    active===5 ? variancePage() :
+    active===6 ? servicesPage() :
+    active===7 ? staffPage() :
+    active===8 ? reportPage() :
+    summaryPage();
 }
 
-function showPage(page, button) {
-    document.querySelectorAll(".nav-button").forEach(element => {
-        element.classList.remove("active");
-    });
+function home() {
+  return `
+    <div class="hero">
+      <div class="lotus">✿</div>
+      <h2>Azie Balinese Spa</h2>
+      <div class="tagline">Beauty • Relax • Rejuvenate</div>
+      <h3>EZ SPA COST</h3>
+      <p>Sistem Pengurusan &amp; Pengiraan Kos Perkhidmatan Spa Pintar</p>
+    </div>
 
-    if (button) button.classList.add("active");
-
-    localStorage.setItem("ezSpaLastPage", page);
-
-    renderPage(page);
+    <div class="cards">
+      ${MENUS.slice(1).map((x,j)=>`
+        <button class="card ${j===8?'wide':''}"
+          style="--card-bg:${x[3]};--card-border:${x[4]};--accent:${x[5]}"
+          onclick="go(${j+1})">
+          <span class="icon">${x[1]}</span>
+          <b>${j+2}. ${x[0]}</b>
+          <small>${x[2]}</small>
+        </button>
+      `).join('')}
+    </div>
+  `;
 }
 
-function renderCurrentPage() {
-    const page = localStorage.getItem("ezSpaLastPage") || "home";
-    renderPage(page);
+function pageHead(title,sub,buttons='') {
+  return `
+    <div class="page-head">
+      <div>
+        <h2>${title}</h2>
+        <div class="muted">${sub} · Tempoh: ${currentLabel()}</div>
+      </div>
+      <div class="actions no-print">${buttons}</div>
+    </div>
+  `;
 }
 
-function renderPage(page) {
-    const content = document.getElementById("content");
-
-    if (page === "home") {
-        content.innerHTML = `
-            <section class="hero">
-                <h1>${t("welcome")} 🌸</h1>
-                <p>${t("description")}</p>
-                <p>Azie Balinese Spa · Kluang, Johor</p>
-            </section>
-
-            <section class="cards">
-                <div class="card">
-                    <h3>${t("budget")}</h3>
-                    <strong>${money(totalBudget())}</strong>
-                </div>
-
-                <div class="card">
-                    <h3>${t("actual")}</h3>
-                    <strong>${money(totalCost())}</strong>
-                </div>
-
-                <div class="card">
-                    <h3>${t("variance")}</h3>
-                    <strong>${money(totalBudget() - totalCost())}</strong>
-                </div>
-            </section>
-
-            <section class="panel">
-                <h2>${t("summary")}</h2>
-                <p>${t("records")}: ${db.budgets.length + db.costs.length}</p>
-
-                <div class="form-actions">
-                    <button class="primary-btn" onclick="exportCSV()">
-                        ${t("export")}
-                    </button>
-
-                    <button class="secondary-btn" onclick="window.print()">
-                        ${t("report")}
-                    </button>
-                </div>
-            </section>
-        `;
-
-        return;
-    }
-
-    if (page === "company") {
-        content.innerHTML = `
-            <section class="panel">
-                <h2>${t("company")}</h2>
-                <p>${t("companyDescription")}</p>
-
-                <form onsubmit="saveCompany(event)">
-                    <div class="form-grid">
-
-                        <div>
-                            <label>${t("companyName")}</label>
-                            <input id="companyName"
-                                value="${escapeHTML(db.company.name)}"
-                                required>
-                        </div>
-
-                        <div>
-                            <label>${t("address")}</label>
-                            <input id="companyAddress"
-                                value="${escapeHTML(db.company.address)}">
-                        </div>
-
-                        <div>
-                            <label>${t("phone")}</label>
-                            <input id="companyPhone"
-                                value="${escapeHTML(db.company.phone)}">
-                        </div>
-
-                        <div>
-                            <label>${t("email")}</label>
-                            <input id="companyEmail"
-                                type="email"
-                                value="${escapeHTML(db.company.email)}">
-                        </div>
-
-                    </div>
-
-                    <div class="form-actions">
-                        <button class="primary-btn">${t("save")}</button>
-                    </div>
-                </form>
-            </section>
-        `;
-
-        return;
-    }
-
-    if (page === "budget") {
-        content.innerHTML = `
-            <section class="panel">
-                <h2>${t("budgetTitle")}</h2>
-
-                <form onsubmit="addBudget(event)">
-                    <div class="form-grid">
-
-                        <div>
-                            <label>${t("date")}</label>
-                            <input type="date" id="budgetDate" required>
-                        </div>
-
-                        <div>
-                            <label>${t("category")}</label>
-                            <select id="budgetCategory">
-                                <option>Bahan</option>
-                                <option>Gaji</option>
-                                <option>Sewa</option>
-                                <option>Utiliti</option>
-                                <option>Pemasaran</option>
-                                <option>Lain-lain</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label>${t("detail")}</label>
-                            <input id="budgetDetail" required>
-                        </div>
-
-                        <div>
-                            <label>${t("amount")}</label>
-                            <input type="number" id="budgetAmount"
-                                min="0" step="0.01" required>
-                        </div>
-
-                    </div>
-
-                    <div class="form-actions">
-                        <button class="primary-btn">${t("add")}</button>
-                    </div>
-                </form>
-
-                <div id="budgetTable"></div>
-            </section>
-        `;
-
-        renderBudgetTable();
-        return;
-    }
-
-    if (page === "cost") {
-        content.innerHTML = `
-            <section class="panel">
-                <h2>${t("costTitle")}</h2>
-
-                <form onsubmit="addCost(event)">
-                    <div class="form-grid">
-
-                        <div>
-                            <label>${t("date")}</label>
-                            <input type="date" id="costDate" required>
-                        </div>
-
-                        <div>
-                            <label>${t("item")}</label>
-                            <input id="costItem" required>
-                        </div>
-
-                        <div>
-                            <label>${t("quantity")}</label>
-                            <input type="number" id="costQuantity"
-                                min="0.01" step="0.01" required>
-                        </div>
-
-                        <div>
-                            <label>${t("unitCost")}</label>
-                            <input type="number" id="costUnit"
-                                min="0" step="0.01" required>
-                        </div>
-
-                    </div>
-
-                    <div class="form-actions">
-                        <button class="primary-btn">${t("add")}</button>
-                    </div>
-                </form>
-
-                <div id="costTable"></div>
-            </section>
-        `;
-
-        renderCostTable();
-        return;
-    }
-
-    if (page === "variance") {
-        content.innerHTML = `
-            <section class="panel">
-                <h2>${lang === "ms" ? "Analisis Varians" : "Variance Analysis"}</h2>
-
-                <div class="cards">
-                    <div class="card">
-                        <h3>${t("budget")}</h3>
-                        <strong>${money(totalBudget())}</strong>
-                    </div>
-
-                    <div class="card">
-                        <h3>${t("actual")}</h3>
-                        <strong>${money(totalCost())}</strong>
-                    </div>
-
-                    <div class="card">
-                        <h3>${lang === "ms" ? "Varians" : "Variance"}</h3>
-                        <strong>${money(totalBudget() - totalCost())}</strong>
-                    </div>
-                </div>
-
-                <p>
-                    ${lang === "ms"
-                        ? "Varians = Belanjawan − Kos Sebenar."
-                        : "Variance = Budget − Actual Cost."}
-                </p>
-            </section>
-        `;
-
-        return;
-    }
-
-    if (page === "services") {
-        content.innerHTML = `
-            <section class="panel">
-                <h2>${t("serviceTitle")}</h2>
-
-                <form onsubmit="addService(event)">
-                    <div class="form-grid">
-
-                        <div>
-                            <label>${t("service")}</label>
-                            <input id="serviceName" required>
-                        </div>
-
-                        <div>
-                            <label>${t("duration")}</label>
-                            <input id="serviceDuration" type="number"
-                                min="0" required>
-                        </div>
-
-                        <div>
-                            <label>${t("price")}</label>
-                            <input id="servicePrice" type="number"
-                                min="0" step="0.01" required>
-                        </div>
-
-                        <div>
-                            <label>${t("standard")}</label>
-                            <input id="serviceCost" type="number"
-                                min="0" step="0.01" required>
-                        </div>
-
-                    </div>
-
-                    <div class="form-actions">
-                        <button class="primary-btn">${t("add")}</button>
-                    </div>
-                </form>
-
-                <div id="serviceTable"></div>
-            </section>
-        `;
-
-        renderServiceTable();
-        return;
-    }
-
-    if (page === "summary") {
-        content.innerHTML = `
-            <section class="panel">
-                <h2>${t("summary")}</h2>
-
-                <div class="cards">
-                    <div class="card">
-                        <h3>${t("budget")}</h3>
-                        <strong>${money(totalBudget())}</strong>
-                    </div>
-
-                    <div class="card">
-                        <h3>${t("actual")}</h3>
-                        <strong>${money(totalCost())}</strong>
-                    </div>
-
-                    <div class="card">
-                        <h3>${t("variance")}</h3>
-                        <strong>${money(totalBudget() - totalCost())}</strong>
-                    </div>
-                </div>
-
-                <div class="form-actions">
-                    <button class="primary-btn" onclick="exportCSV()">
-                        ${t("export")}
-                    </button>
-
-                    <button class="secondary-btn" onclick="window.print()">
-                        ${t("report")}
-                    </button>
-                </div>
-            </section>
-        `;
-
-        return;
-    }
+function stat(label,value,desc='') {
+  return `
+    <div class="stat">
+      <span>${label}</span>
+      <strong>${value}</strong>
+      <small class="muted">${desc}</small>
+    </div>
+  `;
 }
 
-function escapeHTML(value) {
-    return String(value ?? "").replace(/[&<>"']/g, character => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-    })[character]);
+function companyPage() {
+  let c = db.company;
+
+  return `
+    <div class="page">
+      ${pageHead('Maklumat Syarikat','Profil dan tetapan perniagaan')}
+
+      <form onsubmit="saveCompany(event)">
+        <div class="form-grid">
+          ${field('Nama syarikat','name',c.name)}
+          ${field('Alamat','address',c.address)}
+          ${field('No. telefon','phone',c.phone,'tel')}
+          ${field('E-mel','email',c.email,'email')}
+          ${field('No. pendaftaran','reg',c.reg)}
+          ${field('Pengurus','manager',c.manager)}
+        </div>
+
+        <div class="field">
+          <label>Catatan</label>
+          <textarea name="notes">${esc(c.notes)}</textarea>
+        </div>
+
+        <div class="actions">
+          <button class="btn-green">Simpan Maklumat</button>
+        </div>
+      </form>
+
+      <div class="notice">
+        Maklumat ini digunakan pada paparan dan laporan.
+        Lengkapkan butiran sebenar syarikat sebelum mencetak.
+      </div>
+    </div>
+  `;
 }
 
-function saveCompany(event) {
-    event.preventDefault();
+function field(label,name,value='',type='text',extra='') {
+  return `
+    <div class="field">
+      <label>${label}</label>
+      <input name="${name}" type="${type}" value="${esc(value)}" ${extra}>
+    </div>
+  `;
+}
 
-    db.company = {
-        name: document.getElementById("companyName").value,
-        address: document.getElementById("companyAddress").value,
-        phone: document.getElementById("companyPhone").value,
-        email: document.getElementById("companyEmail").value
+function saveCompany(e) {
+  e.preventDefault();
+  const f = new FormData(e.target);
+
+  for (const k of ['name','address','phone','email','reg','manager','notes']) {
+    db.company[k] = f.get(k)||'';
+  }
+
+  save();
+  alert('Maklumat syarikat disimpan.');
+  render();
+}
+
+function monthRecords(obj) {
+  return obj[period()] || (obj[period()] = []);
+}
+
+function totals() {
+  let budgets = db.budgets[period()] || [];
+  let costs = db.costs[period()] || [];
+
+  return {
+    budget:budgets.reduce((s,r)=>s+num(r.amount),0),
+    actual:costs.reduce((s,r)=>s+num(r.qty)*num(r.unit),0),
+    items:costs.length,
+    budgetCount:budgets.length
+  };
+}
+
+function dashboard() {
+  let t = totals();
+  let diff = t.budget-t.actual;
+
+  let months = MONTHS.map((m,i)=>{
+    let p = document.getElementById('year').value+'-'+
+      String(i+1).padStart(2,'0');
+
+    return {
+      m,
+      v:(db.costs[p]||[]).reduce((s,r)=>s+num(r.qty)*num(r.unit),0)
     };
+  });
 
-    saveDB();
-    alert(t("saved"));
+  let max = Math.max(1,...months.map(x=>x.v));
+
+  return `
+    <div class="page">
+      ${pageHead('Dashboard Kos','Petunjuk prestasi dan graf kos')}
+
+      <div class="stats">
+        ${stat('Jumlah Belanjawan',money(t.budget))}
+        ${stat('Jumlah Kos Direkod',money(t.actual))}
+        ${stat('Baki Belanjawan',money(diff),diff<0?'Kos melebihi belanjawan':'Belanjawan ditolak kos direkod')}
+        ${stat('Rekod Kos',t.items+' item')}
+      </div>
+
+      <h3>Graf Kos Bulanan (${esc(document.getElementById('year').value)})</h3>
+
+      <div class="chart-bars">
+        ${months.map(x=>`
+          <div class="bar-col">
+            <em>${x.v?money(x.v):'—'}</em>
+            <div class="bar" style="height:${Math.max(x.v?3:0,x.v/max*115)}px"></div>
+            <small>${x.m.slice(0,3)}</small>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="actions">
+        <button class="btn-outline" onclick="go(3)">＋ Rekod Belanjawan</button>
+        <button class="btn-outline" onclick="go(4)">＋ Rekod Kos</button>
+        <button class="btn-outline" onclick="go(5)">Analisis Varians</button>
+      </div>
+
+      <div class="notice ${diff<0?'warning':''}">
+        ${diff<0
+          ?'Perhatian: jumlah kos direkod melebihi jumlah belanjawan.'
+          :'Petunjuk: masukkan rekod belanjawan dan kos untuk melihat analisis yang lebih lengkap.'}
+      </div>
+    </div>
+  `;
 }
 
-function addBudget(event) {
-    event.preventDefault();
+function budgetPage() {
+  let rows = db.budgets[period()]||[];
+  let sum = rows.reduce((s,r)=>s+num(r.amount),0);
 
-    db.budgets.push({
-        date: document.getElementById("budgetDate").value,
-        category: document.getElementById("budgetCategory").value,
-        detail: document.getElementById("budgetDetail").value,
-        amount: Number(document.getElementById("budgetAmount").value)
-    });
+  return `
+    <div class="page">
+      ${pageHead('Rekod Belanjawan','Jadual perancangan perbelanjaan')}
 
-    saveDB();
-    renderCurrentPage();
-}
+      <div class="stats">
+        ${stat('Jumlah Belanjawan',money(sum))}
+        ${stat('Bilangan Rekod',rows.length+' rekod')}
+        ${stat('Bulan',currentLabel())}
+        ${stat('Status','Perancangan')}
+      </div>
 
-function addCost(event) {
-    event.preventDefault();
-
-    const quantity = Number(document.getElementById("costQuantity").value);
-    const unit = Number(document.getElementById("costUnit").value);
-
-    db.costs.push({
-        date: document.getElementById("costDate").value,
-        item: document.getElementById("costItem").value,
-        quantity: quantity,
-        unit: unit,
-        total: quantity * unit
-    });
-
-    saveDB();
-    renderCurrentPage();
-}
-
-function addService(event) {
-    event.preventDefault();
-
-    db.services.push({
-        name: document.getElementById("serviceName").value,
-        duration: Number(document.getElementById("serviceDuration").value),
-        price: Number(document.getElementById("servicePrice").value),
-        cost: Number(document.getElementById("serviceCost").value)
-    });
-
-    saveDB();
-    renderCurrentPage();
-}
-
-function renderBudgetTable() {
-    const element = document.getElementById("budgetTable");
-
-    if (!element) return;
-
-    if (db.budgets.length === 0) {
-        element.innerHTML = `<p>${t("empty")}</p>`;
-        return;
-    }
-
-    element.innerHTML = `
-        <div class="table-wrap">
-        <table>
-            <thead>
-                <tr>
-                    <th>${t("date")}</th>
-                    <th>${t("category")}</th>
-                    <th>${t("detail")}</th>
-                    <th>${t("amount")}</th>
-                    <th>${t("delete")}</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${db.budgets.map((row, index) => `
-                    <tr>
-                        <td>${escapeHTML(row.date)}</td>
-                        <td>${escapeHTML(row.category)}</td>
-                        <td>${escapeHTML(row.detail)}</td>
-                        <td>${money(row.amount)}</td>
-                        <td>
-                            <button class="small-btn"
-                                onclick="deleteRecord('budgets',${index})">
-                                ${t("delete")}
-                            </button>
-                        </td>
-                    </tr>
-                `).join("")}
-            </tbody>
-        </table>
+      <form onsubmit="addBudget(event)">
+        <div class="form-grid">
+          ${field('Tarikh','date',new Date().toISOString().slice(0,10),'date','required')}
+          ${field('Kategori','category','','text','required')}
+          ${field('Butiran perbelanjaan','detail','','text','required')}
+          ${field('Amaun belanjawan (RM)','amount','','number','min="0" step="0.01" required')}
         </div>
-    `;
-}
-
-function renderCostTable() {
-    const element = document.getElementById("costTable");
-
-    if (!element) return;
-
-    if (db.costs.length === 0) {
-        element.innerHTML = `<p>${t("empty")}</p>`;
-        return;
-    }
-
-    element.innerHTML = `
-        <div class="table-wrap">
-        <table>
-            <thead>
-                <tr>
-                    <th>${t("date")}</th>
-                    <th>${t("item")}</th>
-                    <th>${t("quantity")}</th>
-                    <th>${t("unitCost")}</th>
-                    <th>${t("totalCost")}</th>
-                    <th>${t("delete")}</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${db.costs.map((row, index) => `
-                    <tr>
-                        <td>${escapeHTML(row.date)}</td>
-                        <td>${escapeHTML(row.item)}</td>
-                        <td>${row.quantity}</td>
-                        <td>${money(row.unit)}</td>
-                        <td>${money(row.total)}</td>
-                        <td>
-                            <button class="small-btn"
-                                onclick="deleteRecord('costs',${index})">
-                                ${t("delete")}
-                            </button>
-                        </td>
-                    </tr>
-                `).join("")}
-            </tbody>
-        </table>
+        <div class="actions">
+          <button class="btn-green">＋ Tambah Belanjawan</button>
         </div>
-    `;
-}
+      </form>
 
-function renderServiceTable() {
-    const element = document.getElementById("serviceTable");
-
-    if (!element) return;
-
-    if (db.services.length === 0) {
-        element.innerHTML = `<p>${t("empty")}</p>`;
-        return;
-    }
-
-    element.innerHTML = `
-        <div class="table-wrap">
-        <table>
-            <thead>
-                <tr>
-                    <th>${t("service")}</th>
-                    <th>${t("duration")}</th>
-                    <th>${t("price")}</th>
-                    <th>${t("standard")}</th>
-                    <th>${t("delete")}</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${db.services.map((row, index) => `
-                    <tr>
-                        <td>${escapeHTML(row.name)}</td>
-                        <td>${row.duration}</td>
-                        <td>${money(row.price)}</td>
-                        <td>${money(row.cost)}</td>
-                        <td>
-                            <button class="small-btn"
-                                onclick="deleteRecord('services',${index})">
-                                ${t("delete")}
-                            </button>
-                        </td>
-                    </tr>
-                `).join("")}
-            </tbody>
-        </table>
-        </div>
-    `;
-}
-
-function deleteRecord(type, index) {
-    if (!confirm(t("delete") + "?")) return;
-
-    db[type].splice(index, 1);
-
-    saveDB();
-    renderCurrentPage();
-}
-
-function exportCSV() {
-    const rows = [
-        ["EZ SPA COST V2.5"],
-        ["Company", db.company.name],
-        [],
-        ["BUDGET RECORDS"],
-        ["Date", "Category", "Details", "Amount"],
-        ...db.budgets.map(row => [
-            row.date,
-            row.category,
-            row.detail,
-            row.amount
-        ]),
-        [],
-        ["COST SHEET"],
-        ["Date", "Item", "Quantity", "Unit Cost", "Total Cost"],
-        ...db.costs.map(row => [
-            row.date,
-            row.item,
-            row.quantity,
-            row.unit,
-            row.total
-        ]),
-        [],
-        ["SERVICE DATA"],
-        ["Service", "Duration", "Selling Price", "Standard Cost"],
-        ...db.services.map(row => [
-            row.name,
-            row.duration,
-            row.price,
-            row.cost
+      ${table(['Tarikh','Kategori','Butiran','Amaun (RM)','Tindakan'],
+        rows.map((r,i)=>[
+          esc(r.date),esc(r.category),esc(r.detail),money(r.amount),
+          `<button class="mini" onclick="delRow('budgets',${i})">Padam</button>`
         ])
-    ];
-
-    const csv = "\uFEFF" + rows.map(row =>
-        row.map(value =>
-            '"' + String(value ?? "").replace(/"/g, '""') + '"'
-        ).join(",")
-    ).join("\r\n");
-
-    const blob = new Blob([csv], {
-        type: "text/csv;charset=utf-8;"
-    });
-
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-
-    link.href = url;
-    link.download = "EZ_Spa_Cost.csv";
-    link.click();
-
-    URL.revokeObjectURL(url);
+      )}
+    </div>
+  `;
 }
 
-function saveDB() {
-    localStorage.setItem("ezSpaData", JSON.stringify(db));
+function addBudget(e) {
+  e.preventDefault();
+  let f = new FormData(e.target);
+
+  monthRecords(db.budgets).push({
+    date:f.get('date'),
+    category:f.get('category'),
+    detail:f.get('detail'),
+    amount:num(f.get('amount'))
+  });
+
+  save();
+  render();
 }
 
-document.getElementById("loginForm").addEventListener("submit", login);
+function costPage() {
+  let rows = db.costs[period()]||[];
+  let sum = rows.reduce((s,r)=>s+num(r.qty)*num(r.unit),0);
 
-document.getElementById("language").value = lang;
-document.getElementById("theme").value =
-    localStorage.getItem("ezSpaTheme") || "pink";
+  return `
+    <div class="page">
+      ${pageHead('Lembaran Kos','Pengiraan kos bahan, buruh dan overhed')}
 
-changeTheme();
-changeLanguage();
+      <div class="stats">
+        ${stat('Jumlah Kos',money(sum))}
+        ${stat('Jumlah Item',rows.length+' item')}
+        ${stat('Tempoh',currentLabel())}
+        ${stat('Kaedah','Kuantiti × Kos seunit')}
+      </div>
 
-if (sessionStorage.getItem("ezSpaLoggedIn") === "true") {
-    document.getElementById("loginScreen").style.display = "none";
-    document.getElementById("app").style.display = "block";
-    renderCurrentPage();
+      <form onsubmit="addCost(event)">
+        <div class="form-grid">
+          ${field('Tarikh','date',new Date().toISOString().slice(0,10),'date','required')}
+          ${field('Perkhidmatan / item','item','','text','required')}
+
+          <div class="field">
+            <label>Kategori kos</label>
+            <select name="category">
+              <option>Bahan</option>
+              <option>Buruh</option>
+              <option>Overhed</option>
+              <option>Lain-lain</option>
+            </select>
+          </div>
+
+          ${field('Kuantiti','qty','1','number','min="0" step="0.01" required')}
+          ${field('Kos seunit (RM)','unit','','number','min="0" step="0.01" required')}
+          ${field('Catatan','note')}
+        </div>
+
+        <div class="actions">
+          <button class="btn-green">＋ Tambah Rekod Kos</button>
+        </div>
+      </form>
+
+      ${table(['Tarikh','Item','Kategori','Kuantiti','Kos Seunit','Jumlah Kos','Catatan','Tindakan'],
+        rows.map((r,i)=>[
+          esc(r.date),esc(r.item),esc(r.category),num(r.qty),money(r.unit),
+          money(num(r.qty)*num(r.unit)),esc(r.note),
+          `<button class="mini" onclick="delRow('costs',${i})">Padam</button>`
+        ])
+      )}
+
+      <div class="notice">
+        Formula jumlah kos: kuantiti × kos seunit.
+        Masukkan amaun berdasarkan rekod sebenar yang digunakan.
+      </div>
+    </div>
+  `;
 }
+
+function addCost(e) {
+  e.preventDefault();
+  let f = new FormData(e.target);
+
+  monthRecords(db.costs).push({
+    date:f.get('date'),
+    item:f.get('item'),
+    category:f.get('category'),
+    qty:num(f.get('qty')),
+    unit:num(f.get('unit')),
+    note:f.get('note')||''
+  });
+
+  save();
+  render();
+}
+
+function variancePage() {
+  let b = db.budgets[period()]||[];
+  let c = db.costs[period()]||[];
+
+  let planned = b.reduce((s,r)=>s+num(r.amount),0);
+  let actual = c.reduce((s,r)=>s+num(r.qty)*num(r.unit),0);
+  let v = planned-actual;
+
+  return `
+    <div class="page">
+      ${pageHead('Analisis Varians','Perbandingan belanjawan (standard) dengan kos sebenar')}
+
+      <div class="stats">
+        ${stat('Kos Standard / Belanjawan',money(planned))}
+        ${stat('Kos Sebenar Direkod',money(actual))}
+        ${stat('Varians (Standard − Sebenar)',money(v))}
+        ${stat('Status',v>0?'Memihak':v<0?'Tidak memihak':'Seimbang')}
+      </div>
+
+      <div class="notice ${v<0?'warning':''}">
+        Formula varians = kos standard / belanjawan − kos sebenar.
+        Varians positif bermaksud kos sebenar lebih rendah daripada belanjawan;
+        varians negatif bermaksud kos sebenar melebihi belanjawan.
+      </div>
+
+      ${table(['Perkara','Amaun (RM)'],[
+        ['Jumlah kos standard / belanjawan',money(planned)],
+        ['Jumlah kos sebenar',money(actual)],
+        ['Varians',money(v)],
+        ['Status',v>0?'Memihak (penjimatan)':v<0?'Tidak memihak (lebihan kos)':'Seimbang']
+      ])}
+
+      <p class="muted">
+        Nota: perbandingan di sini menggunakan jumlah belanjawan bulanan dan
+        jumlah kos yang direkod. Untuk varians mengikut item/perkhidmatan,
+        rekod standard dan sebenar perlu dipadankan secara khusus.
+      </p>
+    </div>
+  `;
+}
+
+function servicesPage() {
+  let rows = db.services;
+
+  return `
+    <div class="page">
+      ${pageHead('Data Perkhidmatan','Katalog rawatan dan harga spa')}
+
+      <form onsubmit="addService(event)">
+        <div class="form-grid">
+          ${field('Nama perkhidmatan','name','','text','required')}
+          ${field('Tempoh (minit)','duration','','number','min="0" required')}
+          ${field('Harga jualan (RM)','price','','number','min="0" step="0.01" required')}
+          ${field('Kos standard (RM)','cost','','number','min="0" step="0.01" required')}
+          ${field('Penerangan','description')}
+        </div>
+
+        <div class="actions">
+          <button class="btn-green">＋ Tambah Perkhidmatan</button>
+        </div>
+      </form>
+
+      ${table(['Perkhidmatan','Tempoh (minit)','Harga (RM)','Kos Standard (RM)','Untung Kasar Anggaran','Penerangan','Tindakan'],
+        rows.map((r,i)=>[
+          esc(r.name),r.duration,money(r.price),money(r.cost),
+          money(num(r.price)-num(r.cost)),esc(r.description),
+          `<button class="mini" onclick="delGlobal('services',${i})">Padam</button>`
+        ])
+      )}
+    </div>
+  `;
+}
+
+function addService(e) {
+  e.preventDefault();
+  let f = new FormData(e.target);
+
+  db.services.push({
+    name:f.get('name'),
+    duration:num(f.get('duration')),
+    price:num(f.get('price')),
+    cost:num(f.get('cost')),
+    description:f.get('description')||''
+  });
+
+  save();
+  render();
+}
+
+function staffPage() {
+  let rows = db.staff;
+
+  return `
+    <div class="page">
+      ${pageHead('Pekerja & Terapis','Senarai staf, jawatan dan kadar upah')}
+
+      <form onsubmit="addStaff(event)">
+        <div class="form-grid">
+          ${field('Nama pekerja','name','','text','required')}
+          ${field('Jawatan / kemahiran','role','','text','required')}
+          ${field('No. telefon','phone')}
+          ${field('Kadar upah sejam (RM)','rate','','number','min="0" step="0.01" required')}
+          ${field('Status','status','Aktif')}
+        </div>
+
+        <div class="actions">
+          <button class="btn-green">＋ Tambah Pekerja</button>
+        </div>
+      </form>
+
+      ${table(['Nama','Jawatan / Kemahiran','Telefon','Kadar Upah Sejam','Status','Tindakan'],
+        rows.map((r,i)=>[
+          esc(r.name),esc(r.role),esc(r.phone),money(r.rate),esc(r.status),
+          `<button class="mini" onclick="delGlobal('staff',${i})">Padam</button>`
+        ])
+      )}
+    </div>
+  `;
+}
+
+function addStaff(e) {
+  e.preventDefault();
+  let f = new FormData(e.target);
+
+  db.staff.push({
+    name:f.get('name'),
+    role:f.get('role'),
+    phone:f.get('phone')||'',
+    rate:num(f.get('rate')),
+    status:f.get('status')||'Aktif'
+  });
+
+  save();
+  render();
+}
+
+function summaryPage() {
+  let t = totals();
+
+  let rows = [
+    ['Jumlah belanjawan',money(t.budget)],
+    ['Jumlah kos sebenar direkod',money(t.actual)],
+    ['Baki / (lebihan) belanjawan',money(t.budget-t.actual)],
+    ['Bilangan rekod belanjawan',t.budgetCount],
+    ['Bilangan item kos',t.items],
+    ['Bilangan perkhidmatan',db.services.length],
+    ['Bilangan pekerja / terapis',db.staff.length]
+  ];
+
+  return `
+    <div class="page">
+      ${pageHead('Ringkasan Kos','Rumusan keseluruhan bulanan')}
+
+      <div class="stats">
+        ${stat('Belanjawan',money(t.budget))}
+        ${stat('Kos Sebenar',money(t.actual))}
+        ${stat('Baki',money(t.budget-t.actual))}
+        ${stat('Rekod',t.budgetCount+t.items+' jumlah')}
+      </div>
+
+      ${table(['Perkara','Nilai'],rows)}
+
+      <div class="actions no-print">
+        <button class="btn-green" onclick="exportExcel()">Eksport CSV untuk Excel</button>
+        <button class="btn-pink" onclick="printReport()">Cetak / Simpan PDF</button>
+      </div>
+    </div>
+  `;
+}
+
+function reportPage() {
+  let t = totals();
+
+  return `
+    <div class="page">
+      ${pageHead('Cetak & Laporan','Laporan ringkas gaya cetakan')}
+
+      <div class="notice">
+        Pilih <b>Cetak Laporan</b> di bahagian atas untuk membuka dialog cetak pelayar.
+        Pilih “Save as PDF” jika mahu simpan sebagai PDF.
+      </div>
+
+      <div class="stats">
+        ${stat('Syarikat',esc(db.company.name||'Belum diisi'))}
+        ${stat('Tempoh',currentLabel())}
+        ${stat('Belanjawan',money(t.budget))}
+        ${stat('Kos Direkod',money(t.actual))}
+      </div>
+
+      <h3>Pratonton Laporan</h3>
+
+      ${table(['Perkara','Nilai'],[
+        ['Nama syarikat',esc(db.company.name)],
+        ['Alamat',esc(db.company.address)],
+        ['Tempoh laporan',currentLabel()],
+        ['Jumlah belanjawan',money(t.budget)],
+        ['Jumlah kos direkod',money(t.actual)],
+        ['Varians (belanjawan − kos)',money(t.budget-t.actual)]
+      ])}
+
+      <div class="actions no-print">
+        <button class="btn-pink" onclick="printReport()">▣ Cetak / Simpan PDF</button>
+        <button class="btn-green" onclick="exportExcel()">Eksport data CSV</button>
+      </div>
+    </div>
+  `;
+}
+
+function table(headers,rows) {
+  if (!rows.length) {
+    return `
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="empty" colspan="${headers.length}">
+                Belum ada rekod untuk tempoh ini.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr>
+        </thead>
+        <tbody>
+          ${rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function delRow(type,i) {
+  if (confirm('Padam rekod ini?')) {
+    db[type][period()].splice(i,1);
+    save();
+    render();
+  }
+}
+
+function delGlobal(type,i) {
+  if (confirm('Padam rekod ini?')) {
+    db[type].splice(i,1);
+    save();
+    render();
+  }
+}
+
+function addYear() {
+  let y = Number(document.getElementById('year').value)+1;
+  let s = document.getElementById('year');
+
+  if (![...s.options].some(o=>Number(o.value)===y)) {
+    let o = document.createElement('option');
+    o.value = y;
+    o.textContent = y;
+    s.add(o);
+  }
+
+  s.value = y;
+  render();
+}
+
+function resetMonth() {
+  if (!confirm('Padam semua rekod belanjawan dan kos untuk '+currentLabel()+'? Maklumat syarikat, perkhidmatan dan pekerja tidak akan dipadam.')) return;
+
+  delete db.budgets[period()];
+  delete db.costs[period()];
+  delete db.variance[period()];
+
+  save();
+  render();
+}
+
+function resetAll() {
+  if (!confirm('AMARAN: Semua data sistem dalam pelayar ini akan dipadam. Teruskan?')) return;
+
+  db = defaultData();
+  save();
+  render();
+  go(0);
+}
+
+function csvCell(v) {
+  let s = String(v??'');
+  return '"'+s.replace(/"/g,'""')+'"';
+}
+
+function exportExcel() {
+  let p = period();
+
+  let rows = [
+    ['EZ SPA COST V2.5 - AZIE BALINESE SPA'],
+    ['Tempoh',currentLabel()],
+    [],
+    ['REKOD BELANJAWAN'],
+    ['Tarikh','Kategori','Butiran','Amaun (RM)'],
+    ...(db.budgets[p]||[]).map(r=>[r.date,r.category,r.detail,r.amount]),
+    [],
+    ['LEMBARAN KOS'],
+    ['Tarikh','Item','Kategori','Kuantiti','Kos Seunit (RM)','Jumlah Kos (RM)','Catatan'],
+    ...(db.costs[p]||[]).map(r=>[
+      r.date,r.item,r.category,r.qty,r.unit,num(r.qty)*num(r.unit),r.note
+    ]),
+    [],
+    ['RINGKASAN'],
+    ['Jumlah Belanjawan',totals().budget],
+    ['Jumlah Kos Sebenar',totals().actual],
+    ['Varians',totals().budget-totals().actual],
+    [],
+    ['DATA PERKHIDMATAN'],
+    ['Nama','Tempoh Minit','Harga RM','Kos Standard RM','Penerangan'],
+    ...db.services.map(r=>[r.name,r.duration,r.price,r.cost,r.description]),
+    [],
+    ['PEKERJA & TERAPIS'],
+    ['Nama','Jawatan','Telefon','Kadar Upah Sejam','Status'],
+    ...db.staff.map(r=>[r.name,r.role,r.phone,r.rate,r.status])
+  ];
+
+  let csv = '\ufeff'+rows.map(r=>r.map(csvCell).join(',')).join('\r\n');
+  let blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  let a = document.createElement('a');
+
+  a.href = URL.createObjectURL(blob);
+  a.download = 'EZ_Spa_Cost_'+p+'.csv';
+  a.click();
+
+  URL.revokeObjectURL(a.href);
+}
+
+function printReport() {
+  window.print();
+}
+
+init();
 </script>
-
 </body>
 </html>
