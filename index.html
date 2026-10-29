@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EZ SPA COST V2.5 | Azie Balinese Spa</title>
+
+<style>
+:root {
+    --primary: #e87998;
+    --secondary: #fce7ef;
+    --background: #fff8fa;
+    --text: #403641;
+    --card: #ffffff;
+    --border: #f3d4df;
+}
+
+body.sage {
+    --primary: #568875;
+    --secondary: #e0eee7;
+    --background: #f4f8f4;
+    --text: #283c33;
+    --border: #cfe0d5;
+}
+
+body.lavender {
+    --primary: #9575cd;
+    --secondary: #eee5fa;
+    --background: #faf7ff;
+    --text: #3f3453;
+    --border: #e0d4f3;
+}
+
+body.ocean {
+    --primary: #3489ae;
+    --secondary: #e1f2fa;
+    --background: #f4faff;
+    --text: #243c4b;
+    --border: #cde6f3;
+}
+
+body.night {
+    --primary: #d6a6ff;
+    --secondary: #303449;
+    --background: #171b28;
+    --text: #f2edf8;
+    --card: #222738;
+    --border: #41475b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    transition: 0.3s;
+}
+
+button, input, select {
+    font: inherit;
+}
+
+button {
+    border: none;
+    padding: 11px 15px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: white;
+}
+
+.secondary-btn {
+    background: var(--secondary);
+    color: var(--text);
+}
+
+header {
+    background: var(--card);
+    padding: 17px 25px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    color: var(--primary);
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.settings {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.settings select {
+    background: var(--card);
+    color: var(--text);
+    padding: 9px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background:
+        linear-gradient(#fff5f0c9, #f9e8f0db),
+        url("https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85")
+        center/cover;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    color: #403641;
+    padding: 35px;
+    border-radius: 22px;
+    box-shadow: 0 15px 45px #51344030;
+    text-align: center;
+}
+
+.login-box .flower {
+    font-size: 48px;
+}
+
+.login-box h1 {
+    color: #bd5979;
+    font-family: Georgia, serif;
+}
+
+.login-box input,
+.login-box select {
+    display: block;
+    width: 100%;
+    margin: 12px 0;
+    padding: 13px;
+    border: 1px solid #ead6df;
+    border-radius: 9px;
+}
+
+.login-box button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.error {
+    color: #c62828;
+    font-size: 13px;
+}
+
+#app {
+    display: none;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 245px minmax(0, 1fr);
+    min-height: calc(100vh - 70px);
+}
+
+.sidebar {
+    background: var(--card);
+    border-right: 1px solid var(--border);
+    padding: 15px;
+}
+
+.sidebar h3 {
+    color: var(--primary);
+    padding: 0 10px;
+}
+
+.nav-button {
+    width: 100%;
+    background: transparent;
+    color: var(--text);
+    text-align: left;
+    margin: 4px 0;
+    padding: 13px;
+    border-radius: 9px;
+}
+
+.nav-button:hover,
+.nav-button.active {
+    background: var(--secondary);
+}
+
+main {
+    padding: 25px;
+    min-width: 0;
+}
+
+.hero {
+    padding: 35px 25px;
+    border-radius: 20px;
+    margin-bottom: 22px;
+    background: linear-gradient(120deg, var(--secondary), var(--card));
+    border: 1px solid var(--border);
+}
+
+.hero h1 {
+    color: var(--primary);
+    font-family: Georgia, serif;
+    font-size: clamp(28px, 4vw, 42px);
+    margin-bottom: 8px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 15px;
+    overflow-wrap: anywhere;
+}
+
+.card h3 {
+    font-size: 14px;
+    color: var(--primary);
+}
+
+.card strong {
+    font-size: 23px;
+}
+
+.panel {
+    background: var(--card);
+    padding: 22px;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+}
+
+.form-grid label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.form-grid input,
+.form-grid select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    border-radius: 8px;
+}
+
+.form-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border-bottom: 1px solid var(--border);
+    padding: 12px;
+    text-align: left;
+    font-size: 13px;
+}
+
+th {
+    background: var(--secondary);
+}
+
+.small-btn {
+    background: #f9dce6;
+    color: #8b3151;
+    padding: 7px 10px;
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+@media(max-width: 850px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    main {
+        padding: 15px;
+    }
+}
+
+@media(max-width: 520px) {
+    .cards,
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        padding: 14px;
+    }
+}
+
+@media print {
+    header, .sidebar, .settings, .form-actions, .no-print {
+        display: none !important;
+    }
+
+    .layout {
+        display: block;
+    }
+
+    main {
+        padding: 0;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .panel, .card {
+        border: 1px solid #ddd;
+        break-inside: avoid;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SKRIN LOG MASUK -->
+<section class="login-screen" id="loginScreen">
+
+    <div class="login-box">
+
+        <div class="flower">🌸</div>
+
+        <h1>AZIE BALINESE SPA</h1>
+
+        <p id="loginSubtitle">
+            EZ SPA COST V2.5<br>
+            Sistem Pengurusan Kos Perkhidmatan
+        </p>
+
+        <form id="loginForm">
+
+            <input
+                id="username"
+                type="text"
+                placeholder="Nama pengguna"
+                required
+            >
+
+            <input
+                id="password"
+                type="password"
+                placeholder="Kata laluan"
+                required
+            >
+
+            <select id="role">
+                <option value="Admin">Pentadbir / Admin</option>
+                <option value="User">Pengguna / User</option>
+            </select>
+
+            <button class="primary-btn" type="submit" id="loginButton">
+                LOG MASUK
+            </button>
+
+            <p class="error" id="loginError"></p>
+
+        </form>
+
+        <p style="font-size:12px;color:#888">
+            Sistem Pengiraan Kos Perkhidmatan
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- SISTEM UTAMA -->
+<div id="app">
+
+    <header>
+
+        <div class="logo">🌿 EZ SPA COST</div>
+
+        <div class="settings">
+
+            <select id="language" onchange="changeLanguage()">
+                <option value="ms">🇲🇾 Bahasa Malaysia</option>
+                <option value="en">🇬🇧 English</option>
+            </select>
+
+            <select id="theme" onchange="changeTheme()">
+                <option value="pink">🌸 Pink Spa</option>
+                <option value="sage">🌿 Sage Green</option>
+                <option value="lavender">💜 Lavender</option>
+                <option value="ocean">🌊 Ocean Blue</option>
+                <option value="night">🌙 Night Mode</option>
+            </select>
+
+            <button class="secondary-btn" onclick="logout()" data-ms="Log Keluar" data-en="Log Out">
+                Log Keluar
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <div class="layout">
+
+        <aside class="sidebar">
+
+            <h3>AZIE BALINESE SPA</h3>
+
+            <nav id="navigation">
+
+                <button class="nav-button active" onclick="showPage('home',this)">
+                    🏠 <span data-ms="Menu Utama" data-en="Main Menu">Menu Utama</span>
+                </button>
+
+                <button class="nav-button" onclick="showPage('company',this)">
+                    🏢 <span data-ms="Maklumat Syarikat" data-en="Company Information">Maklumat Syarikat</span>
+                </button>
+
+                <button class="nav-button" onclick="showPage('budget',this)">
+                    📒 <span data-ms="Rekod Belanjawan" data-en="Budget Records">Rekod Belanjawan</span>
+                </button>
+
+                <button class="nav-button" onclick="showPage('cost',this)">
+                    🧾 <span data-ms="Lembaran Kos" data-en="Cost Sheet">Lembaran Kos</span>
+                </button>
+
+                <button class="nav-button" onclick="showPage('variance',this)">
+                    ⚖️ <span data-ms="Analisis Varians" data-en="Variance Analysis">Analisis Varians</span>
+                </button>
+
+                <button class="nav-button" onclick="showPage('services',this)">
+                    💆 <span data-ms="Data Perkhidmatan" data-en="Service Data">Data Perkhidmatan</span>
+                </button>
+
+                <button class="nav-button" onclick="showPage('summary',this)">
+                    📊 <span data-ms="Ringkasan Kos" data-en="Cost Summary">Ringkasan Kos</span>
+                </button>
+
+            </nav>
+
+        </aside>
+
+
+        <main id="content"></main>
+
+    </div>
+
+    <footer>
+        EZ SPA COST V2.5 · AZIE BALINESE SPA · KLUANG, JOHOR
+    </footer>
+
+</div>
+
+
+<script>
+const translations = {
+    ms: {
+        welcome: "Selamat Datang ke EZ SPA COST",
+        subtitle: "Sistem Pengurusan Kos Perkhidmatan Azie Balinese Spa",
+        description: "Urus belanjawan, kos perkhidmatan dan analisis varians dengan lebih sistematik.",
+        budget: "Jumlah Belanjawan",
+        actual: "Jumlah Kos Sebenar",
+        variance: "Baki Belanjawan",
+        records: "Bilangan Rekod",
+        company: "Maklumat Syarikat",
+        companyDescription: "Profil dan maklumat perniagaan spa.",
+        companyName: "Nama Syarikat",
+        address: "Alamat",
+        phone: "Nombor Telefon",
+        email: "Alamat E-mel",
+        save: "Simpan Maklumat",
+        budgetTitle: "Rekod Belanjawan",
+        date: "Tarikh",
+        category: "Kategori",
+        detail: "Butiran",
+        amount: "Amaun (RM)",
+        add: "Tambah Rekod",
+        delete: "Padam",
+        costTitle: "Lembaran Kos",
+        item: "Nama Item",
+        quantity: "Kuantiti",
+        unitCost: "Kos Seunit (RM)",
+        totalCost: "Jumlah Kos (RM)",
+        serviceTitle: "Data Perkhidmatan",
+        service: "Nama Perkhidmatan",
+        price: "Harga Jualan (RM)",
+        standard: "Kos Standard (RM)",
+        duration: "Tempoh (minit)",
+        summary: "Ringkasan Kos",
+        empty: "Belum ada rekod.",
+        report: "Cetak / Simpan PDF",
+        export: "Eksport CSV untuk Excel",
+        saved: "Maklumat berjaya disimpan.",
+        required: "Sila lengkapkan maklumat yang diperlukan."
+    },
+
+    en: {
+        welcome: "Welcome to EZ SPA COST",
+        subtitle: "Azie Balinese Spa Cost Management System",
+        description: "Manage budgets, service costs and variance analysis systematically.",
+        budget: "Total Budget",
+        actual: "Total Actual Cost",
+        variance: "Budget Balance",
+        records: "Number of Records",
+        company: "Company Information",
+        companyDescription: "Spa business profile and information.",
+        companyName: "Company Name",
+        address: "Address",
+        phone: "Phone Number",
+        email: "Email Address",
+        save: "Save Information",
+        budgetTitle: "Budget Records",
+        date: "Date",
+        category: "Category",
+        detail: "Details",
+        amount: "Amount (RM)",
+        add: "Add Record",
+        delete: "Delete",
+        costTitle: "Cost Sheet",
+        item: "Item Name",
+        quantity: "Quantity",
+        unitCost: "Unit Cost (RM)",
+        totalCost: "Total Cost (RM)",
+        serviceTitle: "Service Data",
+        service: "Service Name",
+        price: "Selling Price (RM)",
+        standard: "Standard Cost (RM)",
+        duration: "Duration (minutes)",
+        summary: "Cost Summary",
+        empty: "No records yet.",
+        report: "Print / Save PDF",
+        export: "Export CSV for Excel",
+        saved: "Information saved successfully.",
+        required: "Please complete the required information."
+    }
+};
+
+const defaultDB = {
+    company: {
+        name: "Azie Balinese Spa",
+        address: "Kluang, Johor",
+        phone: "",
+        email: ""
+    },
+    budgets: [],
+    costs: [],
+    services: []
+};
+
+let db;
+
+try {
+    db = Object.assign(
+        {},
+        defaultDB,
+        JSON.parse(localStorage.getItem("ezSpaData") || "{}")
+    );
+
+    db.company = Object.assign(
+        {},
+        defaultDB.company,
+        db.company || {}
+    );
+
+    db.budgets = Array.isArray(db.budgets) ? db.budgets : [];
+    db.costs = Array.isArray(db.costs) ? db.costs : [];
+    db.services = Array.isArray(db.services) ? db.services : [];
+
+} catch (error) {
+    db = JSON.parse(JSON.stringify(defaultDB));
+}
+
+let lang = localStorage.getItem("ezSpaLanguage") || "ms";
+
+function saveDB() {
+    localStorage.setItem("ezSpaData", JSON.stringify(db));
+}
+
+function t(key) {
+    return translations[lang][key] || key;
+}
+
+function money(value) {
+    return (Number(value) || 0).toLocaleString(
+        lang === "ms" ? "ms-MY" : "en-MY",
+        {
+            style: "currency",
+            currency: "MYR",
+            minimumFractionDigits: 2
+        }
+    );
+}
+
+function totalBudget() {
+    return db.budgets.reduce(
+        (sum, row) => sum + Number(row.amount || 0),
+        0
+    );
+}
+
+function totalCost() {
+    return db.costs.reduce(
+        (sum, row) => sum + Number(row.total || 0),
+        0
+    );
+}
+
+function changeTheme() {
+    const theme = document.getElementById("theme").value;
+
+    document.body.className = theme === "pink" ? "" : theme;
+
+    localStorage.setItem("ezSpaTheme", theme);
+}
+
+function changeLanguage() {
+    lang = document.getElementById("language").value;
+
+    localStorage.setItem("ezSpaLanguage", lang);
+
+    document.querySelectorAll("[data-ms]").forEach(element => {
+        element.textContent = element.getAttribute(
+            "data-" + lang
+        );
+    });
+
+    document.getElementById("username").placeholder =
+        lang === "ms" ? "Nama pengguna" : "Username";
+
+    document.getElementById("password").placeholder =
+        lang === "ms" ? "Kata laluan" : "Password";
+
+    document.getElementById("loginButton").textContent =
+        lang === "ms" ? "LOG MASUK" : "LOG IN";
+
+    document.getElementById("loginSubtitle").innerHTML =
+        lang === "ms"
+            ? "EZ SPA COST V2.5<br>Sistem Pengurusan Kos Perkhidmatan"
+            : "EZ SPA COST V2.5<br>Service Cost Management System";
+
+    renderCurrentPage();
+}
+
+function login(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
+    const role = document.getElementById("role").value;
+
+    const valid =
+        (username === "admin" &&
+         password === "spa123" &&
+         role === "Admin") ||
+
+        (username === "user" &&
+         password === "user123" &&
+         role === "User");
+
+    if (!valid) {
+        document.getElementById("loginError").textContent =
+            lang === "ms"
+                ? "Nama pengguna atau kata laluan tidak tepat."
+                : "Incorrect username or password.";
+
+        return;
+    }
+
+    sessionStorage.setItem("ezSpaLoggedIn", "true");
+
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("app").style.display = "block";
+
+    renderCurrentPage();
+}
+
+function logout() {
+    sessionStorage.removeItem("ezSpaLoggedIn");
+
+    document.getElementById("app").style.display = "none";
+    document.getElementById("loginScreen").style.display = "flex";
+
+    document.getElementById("password").value = "";
+}
+
+function showPage(page, button) {
+    document.querySelectorAll(".nav-button").forEach(element => {
+        element.classList.remove("active");
+    });
+
+    if (button) button.classList.add("active");
+
+    localStorage.setItem("ezSpaLastPage", page);
+
+    renderPage(page);
+}
+
+function renderCurrentPage() {
+    const page = localStorage.getItem("ezSpaLastPage") || "home";
+    renderPage(page);
+}
+
+function renderPage(page) {
+    const content = document.getElementById("content");
+
+    if (page === "home") {
+        content.innerHTML = `
+            <section class="hero">
+                <h1>${t("welcome")} 🌸</h1>
+                <p>${t("description")}</p>
+                <p>Azie Balinese Spa · Kluang, Johor</p>
+            </section>
+
+            <section class="cards">
+                <div class="card">
+                    <h3>${t("budget")}</h3>
+                    <strong>${money(totalBudget())}</strong>
+                </div>
+
+                <div class="card">
+                    <h3>${t("actual")}</h3>
+                    <strong>${money(totalCost())}</strong>
+                </div>
+
+                <div class="card">
+                    <h3>${t("variance")}</h3>
+                    <strong>${money(totalBudget() - totalCost())}</strong>
+                </div>
+            </section>
+
+            <section class="panel">
+                <h2>${t("summary")}</h2>
+                <p>${t("records")}: ${db.budgets.length + db.costs.length}</p>
+
+                <div class="form-actions">
+                    <button class="primary-btn" onclick="exportCSV()">
+                        ${t("export")}
+                    </button>
+
+                    <button class="secondary-btn" onclick="window.print()">
+                        ${t("report")}
+                    </button>
+                </div>
+            </section>
+        `;
+
+        return;
+    }
+
+    if (page === "company") {
+        content.innerHTML = `
+            <section class="panel">
+                <h2>${t("company")}</h2>
+                <p>${t("companyDescription")}</p>
+
+                <form onsubmit="saveCompany(event)">
+                    <div class="form-grid">
+
+                        <div>
+                            <label>${t("companyName")}</label>
+                            <input id="companyName"
+                                value="${escapeHTML(db.company.name)}"
+                                required>
+                        </div>
+
+                        <div>
+                            <label>${t("address")}</label>
+                            <input id="companyAddress"
+                                value="${escapeHTML(db.company.address)}">
+                        </div>
+
+                        <div>
+                            <label>${t("phone")}</label>
+                            <input id="companyPhone"
+                                value="${escapeHTML(db.company.phone)}">
+                        </div>
+
+                        <div>
+                            <label>${t("email")}</label>
+                            <input id="companyEmail"
+                                type="email"
+                                value="${escapeHTML(db.company.email)}">
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="primary-btn">${t("save")}</button>
+                    </div>
+                </form>
+            </section>
+        `;
+
+        return;
+    }
+
+    if (page === "budget") {
+        content.innerHTML = `
+            <section class="panel">
+                <h2>${t("budgetTitle")}</h2>
+
+                <form onsubmit="addBudget(event)">
+                    <div class="form-grid">
+
+                        <div>
+                            <label>${t("date")}</label>
+                            <input type="date" id="budgetDate" required>
+                        </div>
+
+                        <div>
+                            <label>${t("category")}</label>
+                            <select id="budgetCategory">
+                                <option>Bahan</option>
+                                <option>Gaji</option>
+                                <option>Sewa</option>
+                                <option>Utiliti</option>
+                                <option>Pemasaran</option>
+                                <option>Lain-lain</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label>${t("detail")}</label>
+                            <input id="budgetDetail" required>
+                        </div>
+
+                        <div>
+                            <label>${t("amount")}</label>
+                            <input type="number" id="budgetAmount"
+                                min="0" step="0.01" required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="primary-btn">${t("add")}</button>
+                    </div>
+                </form>
+
+                <div id="budgetTable"></div>
+            </section>
+        `;
+
+        renderBudgetTable();
+        return;
+    }
+
+    if (page === "cost") {
+        content.innerHTML = `
+            <section class="panel">
+                <h2>${t("costTitle")}</h2>
+
+                <form onsubmit="addCost(event)">
+                    <div class="form-grid">
+
+                        <div>
+                            <label>${t("date")}</label>
+                            <input type="date" id="costDate" required>
+                        </div>
+
+                        <div>
+                            <label>${t("item")}</label>
+                            <input id="costItem" required>
+                        </div>
+
+                        <div>
+                            <label>${t("quantity")}</label>
+                            <input type="number" id="costQuantity"
+                                min="0.01" step="0.01" required>
+                        </div>
+
+                        <div>
+                            <label>${t("unitCost")}</label>
+                            <input type="number" id="costUnit"
+                                min="0" step="0.01" required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="primary-btn">${t("add")}</button>
+                    </div>
+                </form>
+
+                <div id="costTable"></div>
+            </section>
+        `;
+
+        renderCostTable();
+        return;
+    }
+
+    if (page === "variance") {
+        content.innerHTML = `
+            <section class="panel">
+                <h2>${lang === "ms" ? "Analisis Varians" : "Variance Analysis"}</h2>
+
+                <div class="cards">
+                    <div class="card">
+                        <h3>${t("budget")}</h3>
+                        <strong>${money(totalBudget())}</strong>
+                    </div>
+
+                    <div class="card">
+                        <h3>${t("actual")}</h3>
+                        <strong>${money(totalCost())}</strong>
+                    </div>
+
+                    <div class="card">
+                        <h3>${lang === "ms" ? "Varians" : "Variance"}</h3>
+                        <strong>${money(totalBudget() - totalCost())}</strong>
+                    </div>
+                </div>
+
+                <p>
+                    ${lang === "ms"
+                        ? "Varians = Belanjawan − Kos Sebenar."
+                        : "Variance = Budget − Actual Cost."}
+                </p>
+            </section>
+        `;
+
+        return;
+    }
+
+    if (page === "services") {
+        content.innerHTML = `
+            <section class="panel">
+                <h2>${t("serviceTitle")}</h2>
+
+                <form onsubmit="addService(event)">
+                    <div class="form-grid">
+
+                        <div>
+                            <label>${t("service")}</label>
+                            <input id="serviceName" required>
+                        </div>
+
+                        <div>
+                            <label>${t("duration")}</label>
+                            <input id="serviceDuration" type="number"
+                                min="0" required>
+                        </div>
+
+                        <div>
+                            <label>${t("price")}</label>
+                            <input id="servicePrice" type="number"
+                                min="0" step="0.01" required>
+                        </div>
+
+                        <div>
+                            <label>${t("standard")}</label>
+                            <input id="serviceCost" type="number"
+                                min="0" step="0.01" required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="primary-btn">${t("add")}</button>
+                    </div>
+                </form>
+
+                <div id="serviceTable"></div>
+            </section>
+        `;
+
+        renderServiceTable();
+        return;
+    }
+
+    if (page === "summary") {
+        content.innerHTML = `
+            <section class="panel">
+                <h2>${t("summary")}</h2>
+
+                <div class="cards">
+                    <div class="card">
+                        <h3>${t("budget")}</h3>
+                        <strong>${money(totalBudget())}</strong>
+                    </div>
+
+                    <div class="card">
+                        <h3>${t("actual")}</h3>
+                        <strong>${money(totalCost())}</strong>
+                    </div>
+
+                    <div class="card">
+                        <h3>${t("variance")}</h3>
+                        <strong>${money(totalBudget() - totalCost())}</strong>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button class="primary-btn" onclick="exportCSV()">
+                        ${t("export")}
+                    </button>
+
+                    <button class="secondary-btn" onclick="window.print()">
+                        ${t("report")}
+                    </button>
+                </div>
+            </section>
+        `;
+
+        return;
+    }
+}
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[character]);
+}
+
+function saveCompany(event) {
+    event.preventDefault();
+
+    db.company = {
+        name: document.getElementById("companyName").value,
+        address: document.getElementById("companyAddress").value,
+        phone: document.getElementById("companyPhone").value,
+        email: document.getElementById("companyEmail").value
+    };
+
+    saveDB();
+    alert(t("saved"));
+}
+
+function addBudget(event) {
+    event.preventDefault();
+
+    db.budgets.push({
+        date: document.getElementById("budgetDate").value,
+        category: document.getElementById("budgetCategory").value,
+        detail: document.getElementById("budgetDetail").value,
+        amount: Number(document.getElementById("budgetAmount").value)
+    });
+
+    saveDB();
+    renderCurrentPage();
+}
+
+function addCost(event) {
+    event.preventDefault();
+
+    const quantity = Number(document.getElementById("costQuantity").value);
+    const unit = Number(document.getElementById("costUnit").value);
+
+    db.costs.push({
+        date: document.getElementById("costDate").value,
+        item: document.getElementById("costItem").value,
+        quantity: quantity,
+        unit: unit,
+        total: quantity * unit
+    });
+
+    saveDB();
+    renderCurrentPage();
+}
+
+function addService(event) {
+    event.preventDefault();
+
+    db.services.push({
+        name: document.getElementById("serviceName").value,
+        duration: Number(document.getElementById("serviceDuration").value),
+        price: Number(document.getElementById("servicePrice").value),
+        cost: Number(document.getElementById("serviceCost").value)
+    });
+
+    saveDB();
+    renderCurrentPage();
+}
+
+function renderBudgetTable() {
+    const element = document.getElementById("budgetTable");
+
+    if (!element) return;
+
+    if (db.budgets.length === 0) {
+        element.innerHTML = `<p>${t("empty")}</p>`;
+        return;
+    }
+
+    element.innerHTML = `
+        <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>${t("date")}</th>
+                    <th>${t("category")}</th>
+                    <th>${t("detail")}</th>
+                    <th>${t("amount")}</th>
+                    <th>${t("delete")}</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${db.budgets.map((row, index) => `
+                    <tr>
+                        <td>${escapeHTML(row.date)}</td>
+                        <td>${escapeHTML(row.category)}</td>
+                        <td>${escapeHTML(row.detail)}</td>
+                        <td>${money(row.amount)}</td>
+                        <td>
+                            <button class="small-btn"
+                                onclick="deleteRecord('budgets',${index})">
+                                ${t("delete")}
+                            </button>
+                        </td>
+                    </tr>
+                `).join("")}
+            </tbody>
+        </table>
+        </div>
+    `;
+}
+
+function renderCostTable() {
+    const element = document.getElementById("costTable");
+
+    if (!element) return;
+
+    if (db.costs.length === 0) {
+        element.innerHTML = `<p>${t("empty")}</p>`;
+        return;
+    }
+
+    element.innerHTML = `
+        <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>${t("date")}</th>
+                    <th>${t("item")}</th>
+                    <th>${t("quantity")}</th>
+                    <th>${t("unitCost")}</th>
+                    <th>${t("totalCost")}</th>
+                    <th>${t("delete")}</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${db.costs.map((row, index) => `
+                    <tr>
+                        <td>${escapeHTML(row.date)}</td>
+                        <td>${escapeHTML(row.item)}</td>
+                        <td>${row.quantity}</td>
+                        <td>${money(row.unit)}</td>
+                        <td>${money(row.total)}</td>
+                        <td>
+                            <button class="small-btn"
+                                onclick="deleteRecord('costs',${index})">
+                                ${t("delete")}
+                            </button>
+                        </td>
+                    </tr>
+                `).join("")}
+            </tbody>
+        </table>
+        </div>
+    `;
+}
+
+function renderServiceTable() {
+    const element = document.getElementById("serviceTable");
+
+    if (!element) return;
+
+    if (db.services.length === 0) {
+        element.innerHTML = `<p>${t("empty")}</p>`;
+        return;
+    }
+
+    element.innerHTML = `
+        <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>${t("service")}</th>
+                    <th>${t("duration")}</th>
+                    <th>${t("price")}</th>
+                    <th>${t("standard")}</th>
+                    <th>${t("delete")}</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${db.services.map((row, index) => `
+                    <tr>
+                        <td>${escapeHTML(row.name)}</td>
+                        <td>${row.duration}</td>
+                        <td>${money(row.price)}</td>
+                        <td>${money(row.cost)}</td>
+                        <td>
+                            <button class="small-btn"
+                                onclick="deleteRecord('services',${index})">
+                                ${t("delete")}
+                            </button>
+                        </td>
+                    </tr>
+                `).join("")}
+            </tbody>
+        </table>
+        </div>
+    `;
+}
+
+function deleteRecord(type, index) {
+    if (!confirm(t("delete") + "?")) return;
+
+    db[type].splice(index, 1);
+
+    saveDB();
+    renderCurrentPage();
+}
+
+function exportCSV() {
+    const rows = [
+        ["EZ SPA COST V2.5"],
+        ["Company", db.company.name],
+        [],
+        ["BUDGET RECORDS"],
+        ["Date", "Category", "Details", "Amount"],
+        ...db.budgets.map(row => [
+            row.date,
+            row.category,
+            row.detail,
+            row.amount
+        ]),
+        [],
+        ["COST SHEET"],
+        ["Date", "Item", "Quantity", "Unit Cost", "Total Cost"],
+        ...db.costs.map(row => [
+            row.date,
+            row.item,
+            row.quantity,
+            row.unit,
+            row.total
+        ]),
+        [],
+        ["SERVICE DATA"],
+        ["Service", "Duration", "Selling Price", "Standard Cost"],
+        ...db.services.map(row => [
+            row.name,
+            row.duration,
+            row.price,
+            row.cost
+        ])
+    ];
+
+    const csv = "\uFEFF" + rows.map(row =>
+        row.map(value =>
+            '"' + String(value ?? "").replace(/"/g, '""') + '"'
+        ).join(",")
+    ).join("\r\n");
+
+    const blob = new Blob([csv], {
+        type: "text/csv;charset=utf-8;"
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "EZ_Spa_Cost.csv";
+    link.click();
+
+    URL.revokeObjectURL(url);
+}
+
+function saveDB() {
+    localStorage.setItem("ezSpaData", JSON.stringify(db));
+}
+
+document.getElementById("loginForm").addEventListener("submit", login);
+
+document.getElementById("language").value = lang;
+document.getElementById("theme").value =
+    localStorage.getItem("ezSpaTheme") || "pink";
+
+changeTheme();
+changeLanguage();
+
+if (sessionStorage.getItem("ezSpaLoggedIn") === "true") {
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("app").style.display = "block";
+    renderCurrentPage();
+}
+</script>
+
+</body>
+</html>
