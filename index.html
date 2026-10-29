@@ -1,1145 +1,517 @@
+
 <!DOCTYPE html>
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EZ SPA COST V2.5 | Azie Balinese Spa</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EZ SPA COST | Azie Balinese Spa</title>
 <style>
-:root {
-  --pink:#f43f65;
-  --pink-dark:#9f1239;
-  --green:#059669;
-  --ink:#253044;
-  --muted:#758094;
-  --line:#f3dce2;
-  --bg:#f8f7f7;
-  --white:#fff;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0;
-  font-family:Inter,"Segoe UI",Arial,sans-serif;
-  color:var(--ink);
-  background:linear-gradient(135deg,#fff8fa,#f6fbf9);
-  min-height:100vh;
-}
-button,input,select,textarea { font:inherit; }
-button {
-  cursor:pointer;
-  border:0;
-  border-radius:11px;
-  padding:10px 14px;
-  font-weight:700;
-  transition:.15s;
-}
-button:hover { filter:brightness(.97); transform:translateY(-1px); }
-.app { display:grid; grid-template-columns:290px minmax(0,1fr); min-height:100vh; }
-.sidebar {
-  background:#fff;
-  border-right:1px solid #f4dce2;
-  position:sticky;
-  top:0;
-  height:100vh;
-  overflow:auto;
-}
-.brand {
-  padding:25px 18px 22px;
-  text-align:center;
-  background:linear-gradient(145deg,#fff2f5,#fff);
-  border-bottom:1px solid #ffe0e7;
-}
-.brand-mark {
-  width:66px;
-  height:66px;
-  border-radius:50%;
-  background:#fde1e6;
-  color:var(--pink);
-  display:grid;
-  place-items:center;
-  font-size:31px;
-  margin:0 auto 10px;
-}
-.brand h1 {
-  font-family:Georgia,serif;
-  color:var(--pink-dark);
-  font-size:27px;
-  margin:0 0 6px;
-}
-.badge {
-  display:inline-block;
-  background:#d1fae5;
-  color:#066b52;
-  border-radius:20px;
-  padding:5px 14px;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.5px;
-}
-.brand p { margin:8px 0 0; color:var(--muted); font-style:italic; font-size:14px; }
-.nav { padding:12px 10px; }
-.nav button {
-  display:flex;
-  gap:12px;
-  align-items:center;
-  width:100%;
-  background:transparent;
-  color:#3d485b;
-  text-align:left;
-  padding:13px 14px;
-  margin:3px 0;
-  border-radius:10px;
-  font-weight:650;
-}
-.nav button.active,.nav button:hover { background:#fff0f3; color:var(--pink-dark); }
-.nav .ico { width:22px; font-size:19px; text-align:center; }
-.side-note {
-  padding:15px;
-  border-top:1px solid #ffe0e7;
-  background:#fff8fa;
-  font-size:12px;
-  color:var(--muted);
-}
-.main { padding:22px 26px 35px; min-width:0; }
-.toolbar {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  background:#fff;
-  border:1px solid #ffb8c6;
-  border-left:5px solid #ff6580;
-  border-radius:18px;
-  padding:16px 18px;
-  box-shadow:0 5px 12px #1b24330d;
-  margin-bottom:27px;
-}
-.toolbar strong { margin-right:2px; }
-.toolbar select {
-  border:1px solid #ffd1da;
-  border-radius:10px;
-  padding:10px 12px;
-  background:white;
-  color:var(--ink);
-}
-.spacer { flex:1; }
-.btn-green { background:#059669; color:white; }
-.btn-pink { background:#e91e4d; color:white; }
-.btn-soft { background:#ffe6eb; color:#a40e37; }
-.btn-outline { background:white; border:1px solid #f6c6d1; color:#9f1239; }
-.hero {
-  position:relative;
-  overflow:hidden;
-  border:1px solid white;
-  border-radius:28px;
-  padding:30px 20px 32px;
-  text-align:center;
-  background:linear-gradient(110deg,#fcecf6,#f8f9ff 48%,#d9faeb);
-  box-shadow:0 10px 18px #1b243315;
-  margin-bottom:27px;
-}
-.hero:after {
-  content:"✿";
-  position:absolute;
-  right:12px;
-  bottom:-65px;
-  font-size:190px;
-  color:#b4b5a044;
-  transform:rotate(-15deg);
-}
-.lotus {
-  position:relative;
-  z-index:1;
-  width:75px;
-  height:75px;
-  border-radius:50%;
-  background:white;
-  box-shadow:0 3px 7px #0002;
-  display:grid;
-  place-items:center;
-  font-size:36px;
-  color:var(--pink);
-  margin:0 auto 8px;
-}
-.hero h2 {
-  position:relative;
-  z-index:1;
-  font-family:Georgia,serif;
-  font-size:clamp(32px,4vw,54px);
-  margin:0;
-  color:#222b3b;
-  letter-spacing:-1.5px;
-}
-.tagline {
-  position:relative;
-  z-index:1;
-  color:var(--pink);
-  font-family:Georgia,serif;
-  font-style:italic;
-  font-size:21px;
-  margin:2px 0 13px;
-}
-.hero h3 {
-  position:relative;
-  z-index:1;
-  color:#08684f;
-  font-family:Georgia,serif;
-  font-size:clamp(27px,3vw,42px);
-  letter-spacing:2px;
-  margin:0;
-}
-.hero p { position:relative; z-index:1; margin:0; color:#536073; font-weight:600; }
-.cards { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:17px; }
-.card {
-  min-height:144px;
-  border:1px solid var(--card-border,#f9c9d3);
-  background:var(--card-bg,#fff0f2);
-  border-radius:19px;
-  padding:17px 12px;
-  text-align:center;
-  display:flex;
-  align-items:center;
-  flex-direction:column;
-  justify-content:center;
-  color:var(--ink);
-  cursor:pointer;
-}
-.card:hover { box-shadow:0 8px 18px #1b243315; transform:translateY(-2px); }
-.card .icon {
-  width:57px;
-  height:57px;
-  border-radius:18px;
-  display:grid;
-  place-items:center;
-  color:white;
-  background:var(--accent,#fb7185);
-  font-size:26px;
-  box-shadow:0 3px 5px #0001;
-  margin-bottom:10px;
-}
-.card b { font-size:14px; }
-.card small { font-size:12px; color:#788296; margin-top:5px; }
-.card.wide { grid-column:span 2; }
-.page {
-  background:#fff;
-  border:1px solid #f4dce2;
-  border-radius:20px;
-  padding:22px;
-  box-shadow:0 5px 15px #1b243308;
-}
-.page-head {
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:20px;
-}
-.page h2 { margin:0 0 5px; font-size:25px; }
-.muted { color:var(--muted); font-size:13px; }
-.stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-bottom:18px; }
-.stat {
-  border:1px solid #f1dfe5;
-  border-radius:15px;
-  padding:17px;
-  background:linear-gradient(135deg,#fff,#fff8fa);
-}
-.stat span { font-size:12px; color:var(--muted); }
-.stat strong { display:block; font-size:24px; margin-top:7px; }
-.form-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:13px; margin-bottom:18px; }
-.field { display:flex; flex-direction:column; gap:6px; }
-.field label { font-size:12px; font-weight:750; color:#536073; }
-.field input,.field select,.field textarea {
-  width:100%;
-  padding:10px 11px;
-  border:1px solid #e7dfe3;
-  border-radius:9px;
-  background:#fff;
-  color:var(--ink);
-  min-width:0;
-}
-.field textarea { min-height:75px; resize:vertical; }
-.actions { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 18px; }
-.table-wrap { overflow:auto; border:1px solid #eee3e7; border-radius:12px; }
-table { width:100%; border-collapse:collapse; min-width:720px; }
-th,td { padding:12px 11px; text-align:left; border-bottom:1px solid #f1e8eb; font-size:13px; }
-th { background:#fff5f7; color:#8c2442; font-size:12px; white-space:nowrap; }
-tr:last-child td { border-bottom:0; }
-td .mini { padding:6px 8px; font-size:11px; background:#ffe7ec; color:#9f1239; }
-.empty { text-align:center; color:#8a94a5; padding:25px; }
-.notice {
-  padding:12px 14px;
-  border-radius:10px;
-  background:#effcf6;
-  color:#087454;
-  border:1px solid #c7f0df;
-  font-size:13px;
-  margin:12px 0;
-}
-.warning { background:#fff8e6; border-color:#f9e2a3; color:#8a5b00; }
-.chart-bars { display:flex; align-items:end; gap:12px; height:180px; padding:18px 8px 0; border-bottom:1px solid #e9e1e4; }
-.bar-col { flex:1; min-width:20px; text-align:center; height:100%; display:flex; flex-direction:column; justify-content:end; align-items:center; gap:6px; }
-.bar { width:min(42px,70%); min-height:3px; background:linear-gradient(#34d399,#059669); border-radius:7px 7px 0 0; }
-.bar-col small { font-size:10px; color:var(--muted); }
-.bar-col em { font-size:10px; font-style:normal; }
-.footer { color:#98a0ad; text-align:center; font-size:11px; margin-top:22px; }
+:root{--pink:#e94f78;--dark:#962748;--green:#168567;--bg:#fff7fa;--card:#fff;--text:#303747;--line:#f1d7e0}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select,textarea{font:inherit}
+button{border:0;border-radius:9px;padding:10px 14px;cursor:pointer;font-weight:bold}
+button:hover{opacity:.88}
+.primary{background:var(--pink);color:white}.green{background:var(--green);color:white}
+.soft{background:#ffe5ed;color:var(--dark)}.danger{background:#ffe4e4;color:#a11}
+input,select,textarea{padding:10px;border:1px solid var(--line);border-radius:8px;width:100%;background:white;color:#303747}
+label{font-size:13px;font-weight:bold}
+.auth{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#fff0f5,#e4fff2)}
+.authbox{background:white;width:min(430px,100%);padding:28px;border-radius:22px;box-shadow:0 10px 35px #0001}
+.authbox h1{text-align:center;color:var(--dark)}.authbox form{display:grid;gap:12px}
+.app{display:none;grid-template-columns:245px 1fr;min-height:100vh}
+aside{background:white;border-right:1px solid var(--line);padding:18px;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{text-align:center;padding:12px 0 20px}.logo{font-size:42px;color:var(--pink)}
+.brand h2{color:var(--dark);font-family:Georgia,serif;margin:5px}
+nav{display:grid;gap:5px}nav button{text-align:left;background:transparent;color:var(--text)}
+nav button.active,nav button:hover{background:#ffe8ef;color:var(--dark)}
+main{padding:22px;min-width:0}.toolbar{background:white;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
+.toolbar select,.toolbar input{width:auto;max-width:160px}.grow{flex:1}
+.hero{padding:35px 20px;border-radius:22px;text-align:center;background:linear-gradient(120deg,#ffe8f0,#f0fff7);margin-bottom:20px}
+.hero h1{font: bold clamp(30px,4vw,48px) Georgia,serif;margin:10px}.hero h2{color:var(--green);letter-spacing:3px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.card,.page,.stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:17px}
+.card{text-align:center;cursor:pointer}.card .emoji{font-size:28px}.card h3{font-size:15px}
+.page h2{margin-top:0}.muted{font-size:13px;color:#7b8493}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:15px 0}
+.stat span{font-size:12px;color:#737d8c}.stat strong{display:block;font-size:22px;margin-top:8px;overflow-wrap:anywhere}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:15px 0}
+.field{display:grid;gap:6px}.actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px;margin-top:15px}
+table{width:100%;border-collapse:collapse;min-width:650px}
+th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:#fff0f5;color:var(--dark)}tr:last-child td{border-bottom:0}
+.notice{padding:12px;background:#e9fff4;border-radius:9px;margin:12px 0;font-size:13px}
+.settings{background:#fff8fb;border:1px solid var(--line);border-radius:12px;padding:15px;margin-top:20px}
+.yearchip{display:inline-flex;align-items:center;gap:6px;background:#ffe8ef;padding:6px 9px;border-radius:8px;margin:5px}
+footer{text-align:center;color:#8b93a0;font-size:11px;margin:25px}
+body.night{background:#191b29;color:#f5f5fb;--card:#272a3b;--line:#414258;--text:#f5f5fb}
+body.night aside,body.night .toolbar,body.night .page,body.night .stat{background:#272a3b;color:#f5f5fb}
+body.night input,body.night select,body.night textarea{background:#303348;color:white}
+@media(max-width:900px){.app{grid-template-columns:1fr}aside{height:auto;position:relative}nav{grid-template-columns:repeat(2,minmax(0,1fr))}main{padding:12px}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:1fr 1fr}.toolbar input,.toolbar select{max-width:100%}}
+@media(max-width:400px){.grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}}
 
-@media(max-width:1200px) {
-  .cards { grid-template-columns:repeat(3,minmax(0,1fr)); }
-  .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .app { grid-template-columns:250px minmax(0,1fr); }
-  .main { padding:18px; }
+#printArea {
+  display: none;
 }
-@media(max-width:780px) {
-  .app { display:block; }
-  .sidebar { position:relative; height:auto; }
-  .nav { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .nav button { font-size:12px; padding:10px; }
-  .main { padding:12px; }
-  .toolbar { padding:12px; }
-  .cards { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
-  .card.wide { grid-column:span 2; }
-  .form-grid { grid-template-columns:1fr 1fr; }
-  .hero { padding:25px 10px; }
-  .stats { gap:8px; }
-  .stat { padding:12px; }
-  .stat strong { font-size:19px; }
-}
-@media(max-width:460px) {
-  .form-grid { grid-template-columns:1fr; }
-  .cards { grid-template-columns:1fr 1fr; }
-  .toolbar .spacer { display:none; }
-}
+
 @media print {
-  .sidebar,.toolbar,.actions,.no-print { display:none!important; }
-  .app { display:block; }
-  .main { padding:0; }
-  .hero,.page { box-shadow:none; }
-  .page { border:0; }
-  .cards { grid-template-columns:repeat(3,1fr); }
-  body { background:white; }
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  body {
+    background: white !important;
+    color: #303747 !important;
+    font-family: Arial, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body > *:not(#printArea) {
+    display: none !important;
+  }
+
+  #printArea {
+    display: block !important;
+    width: 100%;
+    color: #303747;
+    font-size: 10pt;
+  }
+
+  #printArea .report-header {
+    text-align: center;
+    padding: 20px 12px;
+    border-bottom: 3px solid #168567;
+    margin-bottom: 22px;
+  }
+
+  #printArea .report-logo {
+    font-size: 30px;
+    color: #e94f78;
+  }
+
+  #printArea h1 {
+    color: #962748;
+    font-family: Georgia, serif;
+    font-size: 25pt;
+    margin: 8px 0;
+  }
+
+  #printArea h2 {
+    color: #962748;
+    font-size: 14pt;
+    margin-top: 24px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #e8b9ca;
+    break-after: avoid;
+  }
+
+  #printArea p {
+    line-height: 1.6;
+  }
+
+  #printArea .report-summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
+    margin: 15px 0;
+  }
+
+  #printArea .report-stat {
+    border: 1px solid #e8b9ca;
+    padding: 12px;
+    border-radius: 7px;
+  }
+
+  #printArea .report-stat strong {
+    display: block;
+    font-size: 14pt;
+    color: #168567;
+    margin-top: 7px;
+  }
+
+  #printArea table {
+    width: 100%;
+    min-width: 0;
+    border-collapse: collapse;
+    margin: 12px 0 20px;
+  }
+
+  #printArea th {
+    background: #fce7ef !important;
+    color: #962748 !important;
+    font-weight: bold;
+  }
+
+  #printArea th,
+  #printArea td {
+    border: 1px solid #e8d8df;
+    padding: 7px;
+    font-size: 9pt;
+    overflow-wrap: anywhere;
+  }
+
+  #printArea tr {
+    break-inside: avoid;
+  }
+
+  #printArea .report-footer {
+    border-top: 1px solid #e8b9ca;
+    margin-top: 30px;
+    padding-top: 12px;
+    text-align: center;
+    font-size: 9pt;
+  }
 }
-</style>
-</head>
 
-<body>
-<div class="app">
-  <aside class="sidebar">
-    <div class="brand">
-      <div class="brand-mark">♧</div>
-      <h1>Azie Balinese Spa</h1>
-      <span class="badge">EZ SPA COST V2.5</span>
-      <p>Sistem Pengurusan &amp; Kos Spa</p>
-    </div>
+<section class="auth" id="auth">
+ <div class="authbox">
+  <div class="logo" style="text-align:center">✿</div>
+  <h1>Azie Balinese Spa</h1>
+  <p style="text-align:center">EZ SPA COST</p>
+  <div class="actions">
+   <button class="primary" onclick="showAuth('login')">Log Masuk</button>
+   <button class="soft" onclick="showAuth('signup')">Daftar Akaun</button>
+  </div>
+  <form id="login" onsubmit="login(event)">
+   <div class="field"><label>Username</label><input name="username" required></div>
+   <div class="field"><label>Kata laluan</label><input name="password" type="password" required></div>
+   <button class="green">Log Masuk</button>
+   <button type="button" class="soft" onclick="showAuth('forgot')">Lupa Kata Laluan</button>
+   <p id="loginMsg" class="muted"></p>
+  </form>
+  <form id="signup" hidden onsubmit="signup(event)">
+   <div class="field"><label>Username</label><input name="username" required minlength="3"></div>
+   <div class="field"><label>Kata laluan (minimum 6 aksara)</label><input name="password" type="password" required minlength="6"></div>
+   <div class="field"><label>Sahkan kata laluan</label><input name="confirm" type="password" required minlength="6"></div>
+   <button class="green">Daftar Akaun</button><p id="signupMsg" class="muted"></p>
+  </form>
+  <form id="forgot" hidden onsubmit="forgot(event)">
+   <p class="muted">Masukkan username berdaftar untuk menetapkan kata laluan baharu.</p>
+   <div class="field"><label>Username</label><input name="username" required></div>
+   <div class="field"><label>Kata laluan baharu</label><input name="password" type="password" minlength="6" required></div>
+   <button class="green">Tetapkan Semula</button>
+   <button type="button" class="soft" onclick="showAuth('login')">Kembali</button><p id="forgotMsg" class="muted"></p>
+  </form>
+ </div>
+</section>
 
-    <nav class="nav" id="nav"></nav>
-
-    <div class="side-note">
-      <b>◉ Tetapan Tema &amp; Gambar</b>
-      <p>Versi demo setempat · Data disimpan dalam pelayar ini.</p>
-      <button class="btn-outline" onclick="resetAll()">Padam Semua Data</button>
-    </div>
-  </aside>
-
-  <main class="main">
-    <div class="toolbar no-print">
-      <strong>▦ Tempoh Laporan:</strong>
-      <select id="month" aria-label="Bulan"></select>
-      <select id="year" aria-label="Tahun"></select>
-      <button class="btn-green" onclick="addYear()">＋ Tambah Tahun</button>
-      <button class="btn-soft" onclick="resetMonth()">⟲ Reset Borang Bulan Ini</button>
-      <span class="spacer"></span>
-      <button class="btn-green" onclick="exportExcel()">▣ Export Excel Pastel</button>
-      <button class="btn-pink" onclick="printReport()">▣ Cetak Laporan (Million Style)</button>
-    </div>
-
-    <section id="content"></section>
-
-    <div class="footer">
-      EZ SPA COST V2.5 · Azie Balinese Spa · Simpanan data setempat pada peranti ini
-    </div>
-  </main>
+<div class="app" id="app">
+ <aside>
+  <div class="brand"><div class="logo">✿</div><h2>Azie Balinese Spa</h2><b>EZ SPA COST</b><p class="muted">Sistem Pengurusan Kos</p></div>
+  <nav id="nav"></nav>
+  <hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
+  <p id="userLabel" class="muted"></p>
+  <button class="soft" onclick="logout()">Log Keluar</button>
+  <button class="danger" onclick="resetAll()">Padam Semua Data</button>
+ </aside>
+ <main>
+  <div class="toolbar no-print">
+   <b id="periodLabel">Tempoh:</b>
+   <select id="month"></select>
+   <select id="year"><option value="">Pilih tahun</option></select>
+   <input id="newYear" type="number" min="1900" max="2200" placeholder="Masukkan tahun">
+   <button class="green" onclick="addYear()">+ Tambah Tahun</button>
+   <span class="grow"></span>
+   <button class="green" onclick="exportCSV()">Export Excel</button>
+   <button class="primary" onclick="printReport()">Cetak Laporan</button>
+  </div>
+  <section id="content"></section>
+  <footer>EZ SPA COST · Azie Balinese Spa, Kluang</footer>
+ </main>
 </div>
 
 <script>
-const MONTHS = [
-  'Januari','Februari','Mac','April','Mei','Jun',
-  'Julai','Ogos','September','Oktober','November','Disember'
+const MONTHS=['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','Disember'];
+const MENUS=[
+ ['Menu Utama','🏠','Menu sistem'],['Maklumat Syarikat','🏢','Profil syarikat'],
+ ['Dashboard Kos','📊','Ringkasan kewangan'],['Rekod Belanjawan','🧾','Perancangan perbelanjaan'],
+ ['Lembaran Kos','🧮','Pengiraan kos sebenar'],['Analisis Varians','⚖️','Standard berbanding sebenar'],
+ ['Data Perkhidmatan','💆','Senarai rawatan'],['Pekerja & Terapis','👥','Maklumat pekerja'],
+ ['Cetak & Laporan','🖨️','Laporan bulanan'],['Ringkasan Kos','📑','Rumusan kos']
 ];
-
-const MENUS = [
-  ['Menu Utama','⌂','Dashboard dan pautan menu','#fff0f2','#fecdd5','#fb7185'],
-  ['Maklumat Syarikat','▣','Profil & Tetapan Spa','#fff0f2','#fecdd5','#fb7185'],
-  ['Dashboard Kos','⌁','KPI & Graf Kewangan','#e0f8eb','#a7f3d0','#10b981'],
-  ['Rekod Belanjawan','▤','Jadual Perbelanjaan','#fff6d9','#fde68a','#f59e0b'],
-  ['Lembaran Kos','▦','Pecahan Kos Bahan/Buruh','#f5e8fb','#e9d5ff','#a855f7'],
-  ['Analisis Varians','⚖','Standard vs Sebenar','#e0f7f4','#99f6e4','#14b8a6'],
-  ['Data Perkhidmatan','☷','Katalog Rawatan Spa','#e3f5ff','#bae6fd','#0ea5e9'],
-  ['Pekerja & Terapis','♟','Senarai Staf & Kemahiran','#e9edff','#c7d2fe','#6366f1'],
-  ['Cetak & Laporan','▣','Pencetak PDF Million Style','#fff0f2','#fecdd5','#f43f5e'],
-  ['Ringkasan Kos','◔','Rumusan Keseluruhan Bulanan','#f1f9dc','#d9f99d','#65a30d']
-];
-
-const STORE = 'ezSpaCost_v25_data';
-
-const defaultData = () => ({
-  company: {
-    name:'Azie Balinese Spa',
-    address:'Kluang, Johor',
-    phone:'',
-    email:'',
-    reg:'',
-    manager:'',
-    notes:''
-  },
-  services:[],
-  staff:[],
-  budgets:{},
-  costs:{},
-  variance:{}
-});
-
-let db = loadData();
-let active = 0;
-
-function loadData() {
-  try {
-    return Object.assign(defaultData(),JSON.parse(localStorage.getItem(STORE)||'{}'));
-  } catch(e) {
-    return defaultData();
-  }
+const STORE='ezSpaCostDataV3';
+const defaults=()=>({company:{name:'Azie Balinese Spa',address:'Kluang, Johor',phone:'',email:'',reg:'',manager:'',notes:''},services:[],staff:[],budgets:{},costs:{}});
+let db=loadDB(),active=0,currentUser=null;
+function loadDB(){try{return Object.assign(defaults(),JSON.parse(localStorage.getItem(STORE)||'{}'))}catch(e){return defaults()}}
+function save(){localStorage.setItem(STORE,JSON.stringify(db))}
+function users(){try{return JSON.parse(localStorage.getItem('ezSpaUsersV3')||'{}')}catch(e){return {}}}
+function saveUsers(u){localStorage.setItem('ezSpaUsersV3',JSON.stringify(u))}
+function showAuth(which){['login','signup','forgot'].forEach(x=>document.getElementById(x).hidden=x!==which)}
+function login(e){e.preventDefault();let f=new FormData(e.target),u=String(f.get('username')).trim(),p=String(f.get('password'));let role='';
+if(u==='admin'&&p==='spa123@')role='admin';else if(users()[u]&&users()[u].password===p)role='user';
+if(!role){document.getElementById('loginMsg').textContent='Username atau kata laluan salah.';return}
+currentUser={username:u,role};document.getElementById('auth').style.display='none';document.getElementById('app').style.display='grid';document.getElementById('userLabel').textContent='Pengguna: '+u+' ('+role+')';render()}
+function signup(e){e.preventDefault();let f=new FormData(e.target),u=String(f.get('username')).trim(),p=String(f.get('password'));
+if(u.toLowerCase()==='admin'){signupMsg.textContent='Username ini dikhaskan.';return}
+if(p!==f.get('confirm')){signupMsg.textContent='Kata laluan tidak sepadan.';return}
+let all=users();if(all[u]){signupMsg.textContent='Username telah digunakan.';return}
+all[u]={password:p};saveUsers(all);e.target.reset();showAuth('login');loginMsg.textContent='Akaun berjaya dibuat. Sila log masuk.'}
+function forgot(e){e.preventDefault();let f=new FormData(e.target),u=String(f.get('username')).trim();
+if(u==='admin'){forgotMsg.textContent='Kata laluan admin tidak boleh ditetapkan semula di sini.';return}
+let all=users();if(!all[u]){forgotMsg.textContent='Username tidak ditemui.';return}
+all[u].password=f.get('password');saveUsers(all);forgotMsg.textContent='Kata laluan dikemas kini. Sila log masuk.'}
+function logout(){currentUser=null;document.getElementById('app').style.display='none';document.getElementById('auth').style.display='grid';showAuth('login')}
+function lang(){return localStorage.getItem('ezSpaLang')||'ms'}
+function tr(ms,en){return lang()==='en'?en:ms}
+function money(n){return (Number(n)||0).toLocaleString('ms-MY',{style:'currency',currency:'MYR'})}
+function num(n){return Number(n)||0}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function period(){return (year.value||'belum')+'-'+String(MONTHS.indexOf(month.value)+1).padStart(2,'0')}
+function records(obj){return obj[period()]||(obj[period()]=[])}
+function total(){let b=db.budgets[period()]||[],c=db.costs[period()]||[];return {budget:b.reduce((s,x)=>s+num(x.amount),0),cost:c.reduce((s,x)=>s+num(x.qty)*num(x.unit),0),bc:b.length,cc:c.length}}
+function field(label,name,type='text',value='',required=true){return `<div class="field"><label>${label}</label><input name="${name}" type="${type}" value="${esc(value)}" ${required?'required':''}></div>`}
+function table(headers,rows){return `<div class="tablewrap"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.length?rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${headers.length}">Belum ada rekod.</td></tr>`}</tbody></table></div>`}
+function stat(label,value){return `<div class="stat"><span>${label}</span><strong>${value}</strong></div>`}
+function head(title,desc=''){return `<h2>${title}</h2><p class="muted">${desc} · ${esc(month.value)} ${year.value||tr('Tahun belum dipilih','Year not selected')}</p>`}
+function init(){
+ month.innerHTML=MONTHS.map(m=>`<option>${m}</option>`).join('');month.value=MONTHS[new Date().getMonth()];
+ month.onchange=render;year.onchange=render;
+ nav.innerHTML=MENUS.map((m,i)=>`<button id="n${i}" onclick="go(${i})">${m[1]} ${i+1}. ${m[0]}</button>`).join('');
+ const saved=JSON.parse(localStorage.getItem('ezSpaYears')||'[]');fillYears(saved);
+ const theme=localStorage.getItem('ezSpaTheme')||'pink';setTheme(theme);
 }
-
-function save() {
-  localStorage.setItem(STORE,JSON.stringify(db));
+function go(i){active=i;render();window.scrollTo(0,0)}
+function fillYears(list,selected=''){year.innerHTML='<option value="">Pilih tahun</option>'+list.sort((a,b)=>a-b).map(y=>`<option>${y}</option>`).join('');year.value=selected}
+function addYear(){let y=Number(newYear.value);if(!newYear.value||!Number.isInteger(y)||y<1900||y>2200){alert('Masukkan tahun yang sah.');return}
+let list=JSON.parse(localStorage.getItem('ezSpaYears')||'[]');if(!list.includes(y))list.push(y);localStorage.setItem('ezSpaYears',JSON.stringify(list));fillYears(list,String(y));newYear.value='';render()}
+function deleteYear(y){if(!confirm('Padam tahun '+y+' dan semua rekod kos/belanjawan bagi tahun ini?'))return;
+let list=JSON.parse(localStorage.getItem('ezSpaYears')||'[]').filter(x=>x!==y);localStorage.setItem('ezSpaYears',JSON.stringify(list));
+['budgets','costs'].forEach(k=>Object.keys(db[k]).forEach(p=>{if(p.startsWith(y+'-'))delete db[k][p]}));save();fillYears(list);render()}
+function setTheme(t){document.body.classList.toggle('night',t==='night');let palettes={pink:['#e94f78','#962748'],sage:['#168567','#075b47'],lavender:['#9570d9','#5c399b'],ocean:['#258ab8','#155578'],night:['#a78bfa','#ddd6fe']};let p=palettes[t]||palettes.pink;document.documentElement.style.setProperty('--pink',p[0]);document.documentElement.style.setProperty('--dark',p[1]);localStorage.setItem('ezSpaTheme',t)}
+function setLang(v){localStorage.setItem('ezSpaLang',v);render()}
+function render(){
+ document.querySelectorAll('nav button').forEach((b,i)=>b.classList.toggle('active',i===active));
+ if(!year.value&&[2,3,4,5,8,9].includes(active)){content.innerHTML=`<div class="page">${head(tr('Pilih Tahun','Select Year'))}<p>${tr('Masukkan tahun di atas dan tekan Tambah Tahun untuk mula merekod.','Enter a year above and press Add Year to start recording.')}</p>${settingsBox()}</div>`;return}
+ content.innerHTML=[home,companyPage,dashboard,budgetPage,costPage,variancePage,servicesPage,staffPage,reportPage,summaryPage][active]();
 }
-
-function period() {
-  return document.getElementById('year').value + '-' +
-    String(MONTHS.indexOf(document.getElementById('month').value)+1).padStart(2,'0');
-}
-
-function currentLabel() {
-  return document.getElementById('month').value + ' ' +
-    document.getElementById('year').value;
-}
-
-function money(n) {
-  return (Number(n)||0).toLocaleString('ms-MY',{
-    style:'currency',
-    currency:'MYR',
-    minimumFractionDigits:2
-  });
-}
-
-function num(v) {
-  return Number(v)||0;
-}
-
-function esc(s) {
-  return String(s??'').replace(/[&<>"']/g,c=>({
-    '&':'&amp;',
-    '<':'&lt;',
-    '>':'&gt;',
-    '"':'&quot;',
-    "'":'&#39;'
-  }[c]));
-}
-
-function init() {
-  const m = document.getElementById('month');
-  const y = document.getElementById('year');
-
-  m.innerHTML = MONTHS.map(x=>`<option>${x}</option>`).join('');
-  m.value = MONTHS[new Date().getMonth()];
-
-  const yr = new Date().getFullYear();
-  y.innerHTML = Array.from({length:9},(_,i)=>yr-4+i)
-    .map(x=>`<option>${x}</option>`).join('');
-  y.value = yr;
-
-  m.onchange = render;
-  y.onchange = render;
-
-  document.getElementById('nav').innerHTML = MENUS.map((x,i)=>`
-    <button id="nav${i}" onclick="go(${i})">
-      <span class="ico" style="color:${x[5]}">${x[1]}</span>
-      <span>${i+1}. ${x[0]}</span>
-    </button>
-  `).join('');
-
-  render();
-}
-
-function go(i) {
-  active = i;
-  render();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function render() {
-  document.querySelectorAll('.nav button').forEach((b,i)=>
-    b.classList.toggle('active',i===active)
-  );
-
-  const c = document.getElementById('content');
-
-  c.innerHTML =
-    active===0 ? home() :
-    active===1 ? companyPage() :
-    active===2 ? dashboard() :
-    active===3 ? budgetPage() :
-    active===4 ? costPage() :
-    active===5 ? variancePage() :
-    active===6 ? servicesPage() :
-    active===7 ? staffPage() :
-    active===8 ? reportPage() :
-    summaryPage();
-}
-
-function home() {
-  return `
-    <div class="hero">
-      <div class="lotus">✿</div>
-      <h2>Azie Balinese Spa</h2>
-      <div class="tagline">Beauty • Relax • Rejuvenate</div>
-      <h3>EZ SPA COST</h3>
-      <p>Sistem Pengurusan &amp; Pengiraan Kos Perkhidmatan Spa Pintar</p>
-    </div>
-
-    <div class="cards">
-      ${MENUS.slice(1).map((x,j)=>`
-        <button class="card ${j===8?'wide':''}"
-          style="--card-bg:${x[3]};--card-border:${x[4]};--accent:${x[5]}"
-          onclick="go(${j+1})">
-          <span class="icon">${x[1]}</span>
-          <b>${j+2}. ${x[0]}</b>
-          <small>${x[2]}</small>
-        </button>
-      `).join('')}
-    </div>
-  `;
-}
-
-function pageHead(title,sub,buttons='') {
-  return `
-    <div class="page-head">
-      <div>
-        <h2>${title}</h2>
-        <div class="muted">${sub} · Tempoh: ${currentLabel()}</div>
-      </div>
-      <div class="actions no-print">${buttons}</div>
-    </div>
-  `;
-}
-
-function stat(label,value,desc='') {
-  return `
-    <div class="stat">
-      <span>${label}</span>
-      <strong>${value}</strong>
-      <small class="muted">${desc}</small>
-    </div>
-  `;
-}
-
-function companyPage() {
-  let c = db.company;
-
-  return `
-    <div class="page">
-      ${pageHead('Maklumat Syarikat','Profil dan tetapan perniagaan')}
-
-      <form onsubmit="saveCompany(event)">
-        <div class="form-grid">
-          ${field('Nama syarikat','name',c.name)}
-          ${field('Alamat','address',c.address)}
-          ${field('No. telefon','phone',c.phone,'tel')}
-          ${field('E-mel','email',c.email,'email')}
-          ${field('No. pendaftaran','reg',c.reg)}
-          ${field('Pengurus','manager',c.manager)}
-        </div>
-
-        <div class="field">
-          <label>Catatan</label>
-          <textarea name="notes">${esc(c.notes)}</textarea>
-        </div>
-
-        <div class="actions">
-          <button class="btn-green">Simpan Maklumat</button>
-        </div>
-      </form>
-
-      <div class="notice">
-        Maklumat ini digunakan pada paparan dan laporan.
-        Lengkapkan butiran sebenar syarikat sebelum mencetak.
-      </div>
-    </div>
-  `;
-}
-
-function field(label,name,value='',type='text',extra='') {
-  return `
-    <div class="field">
-      <label>${label}</label>
-      <input name="${name}" type="${type}" value="${esc(value)}" ${extra}>
-    </div>
-  `;
-}
-
-function saveCompany(e) {
-  e.preventDefault();
-  const f = new FormData(e.target);
-
-  for (const k of ['name','address','phone','email','reg','manager','notes']) {
-    db.company[k] = f.get(k)||'';
-  }
-
-  save();
-  alert('Maklumat syarikat disimpan.');
-  render();
-}
-
-function monthRecords(obj) {
-  return obj[period()] || (obj[period()] = []);
-}
-
-function totals() {
-  let budgets = db.budgets[period()] || [];
-  let costs = db.costs[period()] || [];
-
-  return {
-    budget:budgets.reduce((s,r)=>s+num(r.amount),0),
-    actual:costs.reduce((s,r)=>s+num(r.qty)*num(r.unit),0),
-    items:costs.length,
-    budgetCount:budgets.length
-  };
-}
-
-function dashboard() {
-  let t = totals();
-  let diff = t.budget-t.actual;
-
-  let months = MONTHS.map((m,i)=>{
-    let p = document.getElementById('year').value+'-'+
-      String(i+1).padStart(2,'0');
-
-    return {
-      m,
-      v:(db.costs[p]||[]).reduce((s,r)=>s+num(r.qty)*num(r.unit),0)
-    };
-  });
-
-  let max = Math.max(1,...months.map(x=>x.v));
-
-  return `
-    <div class="page">
-      ${pageHead('Dashboard Kos','Petunjuk prestasi dan graf kos')}
-
-      <div class="stats">
-        ${stat('Jumlah Belanjawan',money(t.budget))}
-        ${stat('Jumlah Kos Direkod',money(t.actual))}
-        ${stat('Baki Belanjawan',money(diff),diff<0?'Kos melebihi belanjawan':'Belanjawan ditolak kos direkod')}
-        ${stat('Rekod Kos',t.items+' item')}
-      </div>
-
-      <h3>Graf Kos Bulanan (${esc(document.getElementById('year').value)})</h3>
-
-      <div class="chart-bars">
-        ${months.map(x=>`
-          <div class="bar-col">
-            <em>${x.v?money(x.v):'—'}</em>
-            <div class="bar" style="height:${Math.max(x.v?3:0,x.v/max*115)}px"></div>
-            <small>${x.m.slice(0,3)}</small>
-          </div>
-        `).join('')}
-      </div>
-
-      <div class="actions">
-        <button class="btn-outline" onclick="go(3)">＋ Rekod Belanjawan</button>
-        <button class="btn-outline" onclick="go(4)">＋ Rekod Kos</button>
-        <button class="btn-outline" onclick="go(5)">Analisis Varians</button>
-      </div>
-
-      <div class="notice ${diff<0?'warning':''}">
-        ${diff<0
-          ?'Perhatian: jumlah kos direkod melebihi jumlah belanjawan.'
-          :'Petunjuk: masukkan rekod belanjawan dan kos untuk melihat analisis yang lebih lengkap.'}
-      </div>
-    </div>
-  `;
-}
-
-function budgetPage() {
-  let rows = db.budgets[period()]||[];
-  let sum = rows.reduce((s,r)=>s+num(r.amount),0);
-
-  return `
-    <div class="page">
-      ${pageHead('Rekod Belanjawan','Jadual perancangan perbelanjaan')}
-
-      <div class="stats">
-        ${stat('Jumlah Belanjawan',money(sum))}
-        ${stat('Bilangan Rekod',rows.length+' rekod')}
-        ${stat('Bulan',currentLabel())}
-        ${stat('Status','Perancangan')}
-      </div>
-
-      <form onsubmit="addBudget(event)">
-        <div class="form-grid">
-          ${field('Tarikh','date',new Date().toISOString().slice(0,10),'date','required')}
-          ${field('Kategori','category','','text','required')}
-          ${field('Butiran perbelanjaan','detail','','text','required')}
-          ${field('Amaun belanjawan (RM)','amount','','number','min="0" step="0.01" required')}
-        </div>
-        <div class="actions">
-          <button class="btn-green">＋ Tambah Belanjawan</button>
-        </div>
-      </form>
-
-      ${table(['Tarikh','Kategori','Butiran','Amaun (RM)','Tindakan'],
-        rows.map((r,i)=>[
-          esc(r.date),esc(r.category),esc(r.detail),money(r.amount),
-          `<button class="mini" onclick="delRow('budgets',${i})">Padam</button>`
-        ])
-      )}
-    </div>
-  `;
-}
-
-function addBudget(e) {
-  e.preventDefault();
-  let f = new FormData(e.target);
-
-  monthRecords(db.budgets).push({
-    date:f.get('date'),
-    category:f.get('category'),
-    detail:f.get('detail'),
-    amount:num(f.get('amount'))
-  });
-
-  save();
-  render();
-}
-
-function costPage() {
-  let rows = db.costs[period()]||[];
-  let sum = rows.reduce((s,r)=>s+num(r.qty)*num(r.unit),0);
-
-  return `
-    <div class="page">
-      ${pageHead('Lembaran Kos','Pengiraan kos bahan, buruh dan overhed')}
-
-      <div class="stats">
-        ${stat('Jumlah Kos',money(sum))}
-        ${stat('Jumlah Item',rows.length+' item')}
-        ${stat('Tempoh',currentLabel())}
-        ${stat('Kaedah','Kuantiti × Kos seunit')}
-      </div>
-
-      <form onsubmit="addCost(event)">
-        <div class="form-grid">
-          ${field('Tarikh','date',new Date().toISOString().slice(0,10),'date','required')}
-          ${field('Perkhidmatan / item','item','','text','required')}
-
-          <div class="field">
-            <label>Kategori kos</label>
-            <select name="category">
-              <option>Bahan</option>
-              <option>Buruh</option>
-              <option>Overhed</option>
-              <option>Lain-lain</option>
-            </select>
-          </div>
-
-          ${field('Kuantiti','qty','1','number','min="0" step="0.01" required')}
-          ${field('Kos seunit (RM)','unit','','number','min="0" step="0.01" required')}
-          ${field('Catatan','note')}
-        </div>
-
-        <div class="actions">
-          <button class="btn-green">＋ Tambah Rekod Kos</button>
-        </div>
-      </form>
-
-      ${table(['Tarikh','Item','Kategori','Kuantiti','Kos Seunit','Jumlah Kos','Catatan','Tindakan'],
-        rows.map((r,i)=>[
-          esc(r.date),esc(r.item),esc(r.category),num(r.qty),money(r.unit),
-          money(num(r.qty)*num(r.unit)),esc(r.note),
-          `<button class="mini" onclick="delRow('costs',${i})">Padam</button>`
-        ])
-      )}
-
-      <div class="notice">
-        Formula jumlah kos: kuantiti × kos seunit.
-        Masukkan amaun berdasarkan rekod sebenar yang digunakan.
-      </div>
-    </div>
-  `;
-}
-
-function addCost(e) {
-  e.preventDefault();
-  let f = new FormData(e.target);
-
-  monthRecords(db.costs).push({
-    date:f.get('date'),
-    item:f.get('item'),
-    category:f.get('category'),
-    qty:num(f.get('qty')),
-    unit:num(f.get('unit')),
-    note:f.get('note')||''
-  });
-
-  save();
-  render();
-}
-
-function variancePage() {
-  let b = db.budgets[period()]||[];
-  let c = db.costs[period()]||[];
-
-  let planned = b.reduce((s,r)=>s+num(r.amount),0);
-  let actual = c.reduce((s,r)=>s+num(r.qty)*num(r.unit),0);
-  let v = planned-actual;
-
-  return `
-    <div class="page">
-      ${pageHead('Analisis Varians','Perbandingan belanjawan (standard) dengan kos sebenar')}
-
-      <div class="stats">
-        ${stat('Kos Standard / Belanjawan',money(planned))}
-        ${stat('Kos Sebenar Direkod',money(actual))}
-        ${stat('Varians (Standard − Sebenar)',money(v))}
-        ${stat('Status',v>0?'Memihak':v<0?'Tidak memihak':'Seimbang')}
-      </div>
-
-      <div class="notice ${v<0?'warning':''}">
-        Formula varians = kos standard / belanjawan − kos sebenar.
-        Varians positif bermaksud kos sebenar lebih rendah daripada belanjawan;
-        varians negatif bermaksud kos sebenar melebihi belanjawan.
-      </div>
-
-      ${table(['Perkara','Amaun (RM)'],[
-        ['Jumlah kos standard / belanjawan',money(planned)],
-        ['Jumlah kos sebenar',money(actual)],
-        ['Varians',money(v)],
-        ['Status',v>0?'Memihak (penjimatan)':v<0?'Tidak memihak (lebihan kos)':'Seimbang']
-      ])}
-
-      <p class="muted">
-        Nota: perbandingan di sini menggunakan jumlah belanjawan bulanan dan
-        jumlah kos yang direkod. Untuk varians mengikut item/perkhidmatan,
-        rekod standard dan sebenar perlu dipadankan secara khusus.
-      </p>
-    </div>
-  `;
-}
-
-function servicesPage() {
-  let rows = db.services;
-
-  return `
-    <div class="page">
-      ${pageHead('Data Perkhidmatan','Katalog rawatan dan harga spa')}
-
-      <form onsubmit="addService(event)">
-        <div class="form-grid">
-          ${field('Nama perkhidmatan','name','','text','required')}
-          ${field('Tempoh (minit)','duration','','number','min="0" required')}
-          ${field('Harga jualan (RM)','price','','number','min="0" step="0.01" required')}
-          ${field('Kos standard (RM)','cost','','number','min="0" step="0.01" required')}
-          ${field('Penerangan','description')}
-        </div>
-
-        <div class="actions">
-          <button class="btn-green">＋ Tambah Perkhidmatan</button>
-        </div>
-      </form>
-
-      ${table(['Perkhidmatan','Tempoh (minit)','Harga (RM)','Kos Standard (RM)','Untung Kasar Anggaran','Penerangan','Tindakan'],
-        rows.map((r,i)=>[
-          esc(r.name),r.duration,money(r.price),money(r.cost),
-          money(num(r.price)-num(r.cost)),esc(r.description),
-          `<button class="mini" onclick="delGlobal('services',${i})">Padam</button>`
-        ])
-      )}
-    </div>
-  `;
-}
-
-function addService(e) {
-  e.preventDefault();
-  let f = new FormData(e.target);
-
-  db.services.push({
-    name:f.get('name'),
-    duration:num(f.get('duration')),
-    price:num(f.get('price')),
-    cost:num(f.get('cost')),
-    description:f.get('description')||''
-  });
-
-  save();
-  render();
-}
-
-function staffPage() {
-  let rows = db.staff;
-
-  return `
-    <div class="page">
-      ${pageHead('Pekerja & Terapis','Senarai staf, jawatan dan kadar upah')}
-
-      <form onsubmit="addStaff(event)">
-        <div class="form-grid">
-          ${field('Nama pekerja','name','','text','required')}
-          ${field('Jawatan / kemahiran','role','','text','required')}
-          ${field('No. telefon','phone')}
-          ${field('Kadar upah sejam (RM)','rate','','number','min="0" step="0.01" required')}
-          ${field('Status','status','Aktif')}
-        </div>
-
-        <div class="actions">
-          <button class="btn-green">＋ Tambah Pekerja</button>
-        </div>
-      </form>
-
-      ${table(['Nama','Jawatan / Kemahiran','Telefon','Kadar Upah Sejam','Status','Tindakan'],
-        rows.map((r,i)=>[
-          esc(r.name),esc(r.role),esc(r.phone),money(r.rate),esc(r.status),
-          `<button class="mini" onclick="delGlobal('staff',${i})">Padam</button>`
-        ])
-      )}
-    </div>
-  `;
-}
-
-function addStaff(e) {
-  e.preventDefault();
-  let f = new FormData(e.target);
-
-  db.staff.push({
-    name:f.get('name'),
-    role:f.get('role'),
-    phone:f.get('phone')||'',
-    rate:num(f.get('rate')),
-    status:f.get('status')||'Aktif'
-  });
-
-  save();
-  render();
-}
-
-function summaryPage() {
-  let t = totals();
-
-  let rows = [
-    ['Jumlah belanjawan',money(t.budget)],
-    ['Jumlah kos sebenar direkod',money(t.actual)],
-    ['Baki / (lebihan) belanjawan',money(t.budget-t.actual)],
-    ['Bilangan rekod belanjawan',t.budgetCount],
-    ['Bilangan item kos',t.items],
-    ['Bilangan perkhidmatan',db.services.length],
-    ['Bilangan pekerja / terapis',db.staff.length]
-  ];
-
-  return `
-    <div class="page">
-      ${pageHead('Ringkasan Kos','Rumusan keseluruhan bulanan')}
-
-      <div class="stats">
-        ${stat('Belanjawan',money(t.budget))}
-        ${stat('Kos Sebenar',money(t.actual))}
-        ${stat('Baki',money(t.budget-t.actual))}
-        ${stat('Rekod',t.budgetCount+t.items+' jumlah')}
-      </div>
-
-      ${table(['Perkara','Nilai'],rows)}
-
-      <div class="actions no-print">
-        <button class="btn-green" onclick="exportExcel()">Eksport CSV untuk Excel</button>
-        <button class="btn-pink" onclick="printReport()">Cetak / Simpan PDF</button>
-      </div>
-    </div>
-  `;
-}
-
-function reportPage() {
-  let t = totals();
-
-  return `
-    <div class="page">
-      ${pageHead('Cetak & Laporan','Laporan ringkas gaya cetakan')}
-
-      <div class="notice">
-        Pilih <b>Cetak Laporan</b> di bahagian atas untuk membuka dialog cetak pelayar.
-        Pilih “Save as PDF” jika mahu simpan sebagai PDF.
-      </div>
-
-      <div class="stats">
-        ${stat('Syarikat',esc(db.company.name||'Belum diisi'))}
-        ${stat('Tempoh',currentLabel())}
-        ${stat('Belanjawan',money(t.budget))}
-        ${stat('Kos Direkod',money(t.actual))}
-      </div>
-
-      <h3>Pratonton Laporan</h3>
-
-      ${table(['Perkara','Nilai'],[
-        ['Nama syarikat',esc(db.company.name)],
-        ['Alamat',esc(db.company.address)],
-        ['Tempoh laporan',currentLabel()],
-        ['Jumlah belanjawan',money(t.budget)],
-        ['Jumlah kos direkod',money(t.actual)],
-        ['Varians (belanjawan − kos)',money(t.budget-t.actual)]
-      ])}
-
-      <div class="actions no-print">
-        <button class="btn-pink" onclick="printReport()">▣ Cetak / Simpan PDF</button>
-        <button class="btn-green" onclick="exportExcel()">Eksport data CSV</button>
-      </div>
-    </div>
-  `;
-}
-
-function table(headers,rows) {
-  if (!rows.length) {
-    return `
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="empty" colspan="${headers.length}">
-                Belum ada rekod untuk tempoh ini.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    `;
-  }
-
-  return `
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr>
-        </thead>
-        <tbody>
-          ${rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}
-        </tbody>
-      </table>
-    </div>
-  `;
-}
-
-function delRow(type,i) {
-  if (confirm('Padam rekod ini?')) {
-    db[type][period()].splice(i,1);
-    save();
-    render();
-  }
-}
-
-function delGlobal(type,i) {
-  if (confirm('Padam rekod ini?')) {
-    db[type].splice(i,1);
-    save();
-    render();
-  }
-}
-
-function addYear() {
-  let y = Number(document.getElementById('year').value)+1;
-  let s = document.getElementById('year');
-
-  if (![...s.options].some(o=>Number(o.value)===y)) {
-    let o = document.createElement('option');
-    o.value = y;
-    o.textContent = y;
-    s.add(o);
-  }
-
-  s.value = y;
-  render();
-}
-
-function resetMonth() {
-  if (!confirm('Padam semua rekod belanjawan dan kos untuk '+currentLabel()+'? Maklumat syarikat, perkhidmatan dan pekerja tidak akan dipadam.')) return;
-
-  delete db.budgets[period()];
-  delete db.costs[period()];
-  delete db.variance[period()];
-
-  save();
-  render();
-}
-
-function resetAll() {
-  if (!confirm('AMARAN: Semua data sistem dalam pelayar ini akan dipadam. Teruskan?')) return;
-
-  db = defaultData();
-  save();
-  render();
-  go(0);
-}
-
-function csvCell(v) {
-  let s = String(v??'');
-  return '"'+s.replace(/"/g,'""')+'"';
-}
-
-function exportExcel() {
-  let p = period();
-
-  let rows = [
-    ['EZ SPA COST V2.5 - AZIE BALINESE SPA'],
-    ['Tempoh',currentLabel()],
-    [],
-    ['REKOD BELANJAWAN'],
-    ['Tarikh','Kategori','Butiran','Amaun (RM)'],
-    ...(db.budgets[p]||[]).map(r=>[r.date,r.category,r.detail,r.amount]),
-    [],
-    ['LEMBARAN KOS'],
-    ['Tarikh','Item','Kategori','Kuantiti','Kos Seunit (RM)','Jumlah Kos (RM)','Catatan'],
-    ...(db.costs[p]||[]).map(r=>[
-      r.date,r.item,r.category,r.qty,r.unit,num(r.qty)*num(r.unit),r.note
-    ]),
-    [],
-    ['RINGKASAN'],
-    ['Jumlah Belanjawan',totals().budget],
-    ['Jumlah Kos Sebenar',totals().actual],
-    ['Varians',totals().budget-totals().actual],
-    [],
-    ['DATA PERKHIDMATAN'],
-    ['Nama','Tempoh Minit','Harga RM','Kos Standard RM','Penerangan'],
-    ...db.services.map(r=>[r.name,r.duration,r.price,r.cost,r.description]),
-    [],
-    ['PEKERJA & TERAPIS'],
-    ['Nama','Jawatan','Telefon','Kadar Upah Sejam','Status'],
-    ...db.staff.map(r=>[r.name,r.role,r.phone,r.rate,r.status])
-  ];
-
-  let csv = '\ufeff'+rows.map(r=>r.map(csvCell).join(',')).join('\r\n');
-  let blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
-  let a = document.createElement('a');
-
-  a.href = URL.createObjectURL(blob);
-  a.download = 'EZ_Spa_Cost_'+p+'.csv';
-  a.click();
-
-  URL.revokeObjectURL(a.href);
-}
+function home(){return `<div class="hero"><div class="logo">✿</div><h1>Azie Balinese Spa</h1><p>Beauty • Relax • Rejuvenate</p><h2>EZ SPA COST</h2><p>Sistem Pengurusan dan Pengiraan Kos Perkhidmatan Spa</p></div><div class="cards">${MENUS.slice(1).map((m,j)=>`<div class="card" onclick="go(${j+1})"><div class="emoji">${m[1]}</div><h3>${j+2}. ${m[0]}</h3><p class="muted">${m[2]}</p></div>`).join('')}</div>`}
+function companyPage(){let c=db.company;return `<div class="page">${head(tr('Maklumat Syarikat','Company Information'),'Profil dan tetapan perniagaan')}
+<form onsubmit="saveCompany(event)"><div class="grid">
+${field(tr('Nama syarikat','Company name'),'name','text',c.name)}
+${field(tr('Alamat','Address'),'address','text',c.address)}
+${field(tr('No. telefon','Phone'),'phone','tel',c.phone,false)}
+${field('Email','email','email',c.email,false)}
+${field(tr('No. pendaftaran','Registration number'),'reg','text',c.reg,false)}
+${field(tr('Pengurus','Manager'),'manager','text',c.manager,false)}
+</div><div class="field"><label>${tr('Catatan','Notes')}</label><textarea name="notes">${esc(c.notes)}</textarea></div><button class="green" style="margin-top:12px">${tr('Simpan Maklumat','Save Information')}</button></form>
+${settingsBox()}</div>`}
+function settingsBox(){let years=JSON.parse(localStorage.getItem('ezSpaYears')||'[]');return `<div class="settings"><h3>${tr('Tetapan Sistem','System Settings')}</h3><div class="grid">
+<div class="field"><label>${tr('Tema','Theme')}</label><select id="themePick" onchange="setTheme(this.value)"><option value="pink">Pink Spa</option><option value="sage">Sage Green</option><option value="lavender">Lavender</option><option value="ocean">Ocean Blue</option><option value="night">Night Mode</option></select></div>
+<div class="field"><label>${tr('Bahasa','Language')}</label><select onchange="setLang(this.value)"><option value="ms" ${lang()==='ms'?'selected':''}>Bahasa Melayu</option><option value="en" ${lang()==='en'?'selected':''}>English</option></select></div></div>
+<h3>${tr('Pengurusan Tahun','Year Management')}</h3><div class="grid"><div class="field"><label>${tr('Tambah tahun','Add year')}</label><input id="yearSetting" type="number" min="1900" max="2200" placeholder="2026"></div></div>
+<div class="actions"><button type="button" class="green" onclick="addYearFromSettings()">${tr('Tambah Tahun','Add Year')}</button></div>
+${years.map(y=>`<span class="yearchip">${y}<button class="danger" onclick="deleteYear(${y})">${tr('Padam','Delete')}</button></span>`).join('')}</div>`}
+function addYearFromSettings(){newYear.value=yearSetting.value;addYear()}
+function saveCompany(e){e.preventDefault();let f=new FormData(e.target);['name','address','phone','email','reg','manager','notes'].forEach(k=>db.company[k]=f.get(k)||'');save();alert('Maklumat syarikat berjaya disimpan.');render()}
+function dashboard(){let t=total();let months=MONTHS.map((m,i)=>{let p=year.value+'-'+String(i+1).padStart(2,'0');return {m,v:(db.costs[p]||[]).reduce((s,r)=>s+num(r.qty)*num(r.unit),0)}});let max=Math.max(1,...months.map(x=>x.v));
+return `<div class="page">${head('Dashboard Kos','Ringkasan kewangan bulanan')}<div class="stats">${stat('Jumlah Belanjawan',money(t.budget))}${stat('Kos Sebenar',money(t.cost))}${stat('Baki Belanjawan',money(t.budget-t.cost))}${stat('Rekod Kos',t.cc)}</div><h3>Graf Kos Bulanan ${year.value}</h3><div style="display:flex;align-items:end;gap:8px;height:180px;border-bottom:1px solid var(--line);padding-top:15px">${months.map(x=>`<div style="flex:1;text-align:center;font-size:10px"><div style="height:${x.v/max*125}px;min-height:${x.v?3:0}px;background:var(--green);border-radius:5px 5px 0 0"></div>${x.m.slice(0,3)}</div>`).join('')}</div></div>`}
+function budgetPage(){let rows=db.budgets[period()]||[],sum=rows.reduce((s,r)=>s+num(r.amount),0);return `<div class="page">${head('Rekod Belanjawan','Jadual perancangan perbelanjaan')}<div class="stats">${stat('Jumlah Belanjawan',money(sum))}${stat('Bilangan Rekod',rows.length)}</div><form onsubmit="addBudget(event)"><div class="grid">${field('Tarikh','date','date',new Date().toISOString().slice(0,10))}${field('Kategori','category')}${field('Butiran perbelanjaan','detail')}${field('Amaun belanjawan (RM)','amount','number','',true)}</div><button class="green">+ Tambah Belanjawan</button></form>${table(['Tarikh','Kategori','Butiran','Amaun (RM)','Tindakan'],rows.map((r,i)=>[esc(r.date),esc(r.category),esc(r.detail),money(r.amount),`<button class="danger" onclick="delRow('budgets',${i})">Padam</button>`]))}</div>`}
+function addBudget(e){e.preventDefault();let f=new FormData(e.target);records(db.budgets).push({date:f.get('date'),category:f.get('category'),detail:f.get('detail'),amount:num(f.get('amount'))});save();render()}
+function costPage(){let rows=db.costs[period()]||[],sum=rows.reduce((s,r)=>s+num(r.qty)*num(r.unit),0);return `<div class="page">${head('Lembaran Kos','Pengiraan kos bahan, buruh dan overhed')}<div class="stats">${stat('Jumlah Kos',money(sum))}${stat('Bilangan Item',rows.length)}</div><form onsubmit="addCost(event)"><div class="grid">${field('Tarikh','date','date',new Date().toISOString().slice(0,10))}${field('Perkhidmatan / item','item')}<div class="field"><label>Kategori kos</label><select name="category"><option>Bahan</option><option>Buruh</option><option>Overhed</option><option>Lain-lain</option></select></div>${field('Kuantiti','qty','number','1')}${field('Kos seunit (RM)','unit','number')}${field('Catatan','note','text','',false)}</div><button class="green">+ Tambah Rekod Kos</button></form>${table(['Tarikh','Item','Kategori','Kuantiti','Kos Seunit','Jumlah Kos','Catatan','Tindakan'],rows.map((r,i)=>[esc(r.date),esc(r.item),esc(r.category),num(r.qty),money(r.unit),money(num(r.qty)*num(r.unit)),esc(r.note),`<button class="danger" onclick="delRow('costs',${i})">Padam</button>`]))}<div class="notice">Formula jumlah kos = kuantiti × kos seunit.</div></div>`}
+function addCost(e){e.preventDefault();let f=new FormData(e.target);records(db.costs).push({date:f.get('date'),item:f.get('item'),category:f.get('category'),qty:num(f.get('qty')),unit:num(f.get('unit')),note:f.get('note')||''});save();render()}
+function variancePage(){let t=total(),v=t.budget-t.cost;return `<div class="page">${head('Analisis Varians','Perbandingan belanjawan dengan kos sebenar')}<div class="stats">${stat('Kos Standard / Belanjawan',money(t.budget))}${stat('Kos Sebenar',money(t.cost))}${stat('Varians',money(v))}${stat('Status',v>0?'Memihak':v<0?'Tidak memihak':'Seimbang')}</div><div class="notice">Formula varians = belanjawan − kos sebenar. Varians positif menunjukkan penjimatan; varians negatif menunjukkan kos melebihi belanjawan.</div>${table(['Perkara','Amaun (RM)'],[['Belanjawan',money(t.budget)],['Kos sebenar',money(t.cost)],['Varians',money(v)]])}</div>`}
+function servicesPage(){let rows=db.services;return `<div class="page">${head('Data Perkhidmatan','Katalog rawatan dan harga spa')}<form onsubmit="addService(event)"><div class="grid">${field('Nama perkhidmatan','name')}${field('Tempoh (minit)','duration','number')}${field('Harga jualan (RM)','price','number')}${field('Kos standard (RM)','cost','number')}${field('Penerangan','description','text','',false)}</div><button class="green">+ Tambah Perkhidmatan</button></form>${table(['Perkhidmatan','Tempoh','Harga','Kos Standard','Untung Anggaran','Penerangan','Tindakan'],rows.map((r,i)=>[esc(r.name),r.duration,money(r.price),money(r.cost),money(num(r.price)-num(r.cost)),esc(r.description),`<button class="danger" onclick="delGlobal('services',${i})">Padam</button>`]))}</div>`}
+function addService(e){e.preventDefault();let f=new FormData(e.target);db.services.push({name:f.get('name'),duration:num(f.get('duration')),price:num(f.get('price')),cost:num(f.get('cost')),description:f.get('description')||''});save();render()}
+function staffPage(){let rows=db.staff;return `<div class="page">${head('Pekerja & Terapis','Senarai staf dan kadar upah')}<form onsubmit="addStaff(event)"><div class="grid">${field('Nama pekerja','name')}${field('Jawatan / kemahiran','role')}${field('No. telefon','phone','tel','',false)}${field('Kadar upah sejam (RM)','rate','number')}${field('Status','status','text','Aktif')}</div><button class="green">+ Tambah Pekerja</button></form>${table(['Nama','Jawatan','Telefon','Kadar Upah','Status','Tindakan'],rows.map((r,i)=>[esc(r.name),esc(r.role),esc(r.phone),money(r.rate),esc(r.status),`<button class="danger" onclick="delGlobal('staff',${i})">Padam</button>`]))}</div>`}
+function addStaff(e){e.preventDefault();let f=new FormData(e.target);db.staff.push({name:f.get('name'),role:f.get('role'),phone:f.get('phone')||'',rate:num(f.get('rate')),status:f.get('status')||'Aktif'});save();render()}
+function reportPage(){let t=total();return `<div class="page">${head('Cetak & Laporan','Pratonton laporan bulanan')}<div class="stats">${stat('Syarikat',esc(db.company.name))}${stat('Belanjawan',money(t.budget))}${stat('Kos Direkod',money(t.cost))}${stat('Varians',money(t.budget-t.cost))}</div>${table(['Perkara','Nilai'],[['Nama syarikat',esc(db.company.name)],['Alamat',esc(db.company.address)],['Tempoh',month.value+' '+year.value],['Jumlah belanjawan',money(t.budget)],['Jumlah kos sebenar',money(t.cost)],['Varians',money(t.budget-t.cost)]])}<div class="actions no-print"><button class="primary" onclick="printReport()">Cetak Laporan</button><button class="green" onclick="exportCSV()">Export Excel</button></div></div>`}
+function summaryPage(){let t=total();return `<div class="page">${head('Ringkasan Kos','Rumusan keseluruhan bulanan')}<div class="stats">${stat('Belanjawan',money(t.budget))}${stat('Kos Sebenar',money(t.cost))}${stat('Baki',money(t.budget-t.cost))}${stat('Bilangan Rekod',t.bc+t.cc)}</div>${table(['Perkara','Nilai'],[['Jumlah belanjawan',money(t.budget)],['Jumlah kos sebenar',money(t.cost)],['Baki / (lebihan)',money(t.budget-t.cost)],['Bilangan rekod belanjawan',t.bc],['Bilangan item kos',t.cc],['Bilangan perkhidmatan',db.services.length],['Bilangan pekerja',db.staff.length]])}</div>`}
+function delRow(type,i){if(confirm('Padam rekod ini?')){db[type][period()].splice(i,1);save();render()}}
+function delGlobal(type,i){if(confirm('Padam rekod ini?')){db[type].splice(i,1);save();render()}}
+function resetAll(){if(!currentUser||currentUser.role!=='admin'){alert('Fungsi ini hanya untuk Admin.');return}if(confirm('Padam semua data sistem?')){db=defaults();save();render();go(0)}}
+function exportCSV(){let t=total(),rows=[['EZ SPA COST - AZIE BALINESE SPA'],['Tempoh',month.value+' '+year.value],[],['REKOD BELANJAWAN'],['Tarikh','Kategori','Butiran','Amaun'],...(db.budgets[period()]||[]).map(r=>[r.date,r.category,r.detail,r.amount]),[],['LEMBARAN KOS'],['Tarikh','Item','Kategori','Kuantiti','Kos Seunit','Jumlah Kos','Catatan'],...(db.costs[period()]||[]).map(r=>[r.date,r.item,r.category,r.qty,r.unit,num(r.qty)*num(r.unit),r.note]),[],['Jumlah Belanjawan',t.budget],['Jumlah Kos Sebenar',t.cost],['Varians',t.budget-t.cost],[],['PERKHIDMATAN'],['Nama','Tempoh','Harga','Kos Standard'],...db.services.map(r=>[r.name,r.duration,r.price,r.cost]),[],['PEKERJA'],['Nama','Jawatan','Telefon','Kadar Upah','Status'],...db.staff.map(r=>[r.name,r.role,r.phone,r.rate,r.status])];
+const cell=v=>'"'+String(v??'').replace(/"/g,'""')+'"';let csv='\ufeff'+rows.map(r=>r.map(cell).join(',')).join('\r\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.download='EZ_Spa_Cost_'+period()+'.csv';a.click();URL.revokeObjectURL(a.href)}
 
 function printReport() {
+  if (!year.value) {
+    alert('Sila pilih tahun sebelum mencetak laporan.');
+    return;
+  }
+
+  const p = period();
+  const budgets = db.budgets[p] || [];
+  const costs = db.costs[p] || [];
+  const t = total();
+  const c = db.company;
+  const reportDate = new Date().toLocaleDateString('ms-MY');
+
+  const fmt = n => money(n);
+  const safe = s => esc(s ?? '-');
+
+  const makeTable = (headers, rows) => `
+    <table>
+      <thead>
+        <tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>
+      </thead>
+      <tbody>
+        ${rows.length
+          ? rows.map(row => `
+            <tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>
+          `).join('')
+          : `<tr><td colspan="${headers.length}">
+              Tiada rekod untuk tempoh ini.
+            </td></tr>`
+        }
+      </tbody>
+    </table>`;
+
+  const budgetRows = budgets.map((r, i) => [
+    i + 1,
+    safe(r.date),
+    safe(r.category),
+    safe(r.detail),
+    fmt(r.amount)
+  ]);
+
+  const costRows = costs.map((r, i) => [
+    i + 1,
+    safe(r.date),
+    safe(r.item),
+    safe(r.category),
+    num(r.qty),
+    fmt(r.unit),
+    fmt(num(r.qty) * num(r.unit))
+  ]);
+
+  const variance = t.budget - t.cost;
+
+  const serviceRows = db.services.map((r, i) => [
+    i + 1,
+    safe(r.name),
+    safe(r.duration),
+    fmt(r.price),
+    fmt(r.cost),
+    fmt(num(r.price) - num(r.cost))
+  ]);
+
+  const staffRows = db.staff.map((r, i) => [
+    i + 1,
+    safe(r.name),
+    safe(r.role),
+    safe(r.phone),
+    fmt(r.rate),
+    safe(r.status)
+  ]);
+
+  let old = document.getElementById('printArea');
+  if (old) old.remove();
+
+  const area = document.createElement('div');
+  area.id = 'printArea';
+
+  area.innerHTML = `
+    <div class="report-header">
+      <div class="report-logo">✿</div>
+      <h1>${safe(c.name)}</h1>
+      <p>${safe(c.address)}</p>
+      <p>
+        ${c.phone ? 'Telefon: ' + safe(c.phone) : ''}
+        ${c.email ? ' | Email: ' + safe(c.email) : ''}
+      </p>
+      <h2 style="border:0;margin-top:15px">
+        LAPORAN PENGURUSAN KOS
+      </h2>
+      <p><strong>EZ SPA COST</strong></p>
+      <p>Tempoh: ${safe(month.value)} ${safe(year.value)}</p>
+      <p>Tarikh cetakan: ${reportDate}</p>
+    </div>
+
+    <h2>1. Ringkasan Kos</h2>
+    <div class="report-summary">
+      <div class="report-stat">
+        Jumlah Belanjawan
+        <strong>${fmt(t.budget)}</strong>
+      </div>
+      <div class="report-stat">
+        Jumlah Kos Sebenar
+        <strong>${fmt(t.cost)}</strong>
+      </div>
+      <div class="report-stat">
+        Varians
+        <strong>${fmt(variance)}</strong>
+      </div>
+      <div class="report-stat">
+        Baki Belanjawan
+        <strong>${fmt(variance)}</strong>
+      </div>
+    </div>
+
+    <h2>2. Rekod Belanjawan</h2>
+    ${makeTable(
+      ['Bil.', 'Tarikh', 'Kategori', 'Butiran', 'Amaun (RM)'],
+      budgetRows
+    )}
+
+    <h2>3. Lembaran Kos</h2>
+    ${makeTable(
+      ['Bil.', 'Tarikh', 'Item', 'Kategori', 'Kuantiti',
+       'Kos Seunit (RM)', 'Jumlah Kos (RM)'],
+      costRows
+    )}
+
+    <h2>4. Analisis Varians</h2>
+    ${makeTable(
+      ['Perkara', 'Amaun (RM)'],
+      [
+        ['Kos Standard / Belanjawan', fmt(t.budget)],
+        ['Kos Sebenar', fmt(t.cost)],
+        ['Varians (Belanjawan − Kos Sebenar)', fmt(variance)],
+        [
+          'Status',
+          variance > 0
+            ? 'Penjimatan / Memihak'
+            : variance < 0
+              ? 'Kos Melebihi Belanjawan / Tidak Memihak'
+              : 'Seimbang'
+        ]
+      ]
+    )}
+
+    <h2>5. Data Perkhidmatan</h2>
+    ${makeTable(
+      ['Bil.', 'Perkhidmatan', 'Tempoh (minit)',
+       'Harga (RM)', 'Kos Standard (RM)', 'Untung Anggaran (RM)'],
+      serviceRows
+    )}
+
+    <h2>6. Pekerja dan Terapis</h2>
+    ${makeTable(
+      ['Bil.', 'Nama', 'Jawatan', 'Telefon',
+       'Kadar Upah (RM)', 'Status'],
+      staffRows
+    )}
+
+    <h2>7. Maklumat Syarikat</h2>
+    ${makeTable(
+      ['Perkara', 'Maklumat'],
+      [
+        ['Nama syarikat', safe(c.name)],
+        ['Alamat', safe(c.address)],
+        ['No. telefon', safe(c.phone)],
+        ['Email', safe(c.email)],
+        ['No. pendaftaran', safe(c.reg)],
+        ['Pengurus', safe(c.manager)]
+      ]
+    )}
+
+    <div class="report-footer">
+      <strong>${safe(c.name)}</strong><br>
+      Laporan dijana menggunakan EZ SPA COST.<br>
+      Dicetak pada ${reportDate}.
+    </div>
+  `;
+
+  document.body.appendChild(area);
+
+  const cleanup = () => {
+    if (area.isConnected) area.remove();
+    window.removeEventListener('afterprint', cleanup);
+  };
+
+  window.addEventListener('afterprint', cleanup);
   window.print();
 }
-
-init();
-</script>
-</body>
-</html>
